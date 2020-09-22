@@ -1,82 +1,53 @@
 import Link from "components/Link";
-import { useRouter } from "next/router";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import { Container, Grid, Typography } from "@material-ui/core";
 
-import { routes } from "data/routes";
-import Social from "components/Social";
+import { FOOTER_LISTS } from "data/FOOTER_LISTS";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    backgroundColor: theme.palette.primary.main,
-    width: `100%`,
-    position: "relative",
-    overflow: "hidden",
-    marginTop: "6em",
-    padding: "2em 0 ",
+    padding: "70px 0",
+    borderBottom: `8px solid #222`,
   },
-  link: {
-    fontSize: "1.25em",
-    color: "#fff",
-    "&:hover": {
-      color: theme.palette.info.main,
-    },
+  text: {
+    color: "#757575 !important",
+    fontSize: "18px",
   },
-  copylight: {
-    color: "#fff",
-    fontSize: "1em",
+  link__container: {
+    padding: "50px 0",
+  },
+  link_text: {
+    color: "#757575 !important",
+    fontSize: "16px",
     "&:hover": {
-      color: theme.palette.info.main,
+      color: `${theme.palette.secondary.main} !important`,
     },
   },
 }));
 
 const Footer = () => {
   const classes = useStyles();
-  const path = routes;
-  const router = useRouter();
+
+  const lists = FOOTER_LISTS;
   return (
     <footer className={classes.footer}>
-      <Container maxWidth="lg">
-        <Grid container spacing={3} justify="center">
-          {path.map(({ name, link }) => (
-            <Grid item key={link}>
-              <Link href={link}>
-                <Typography
-                  className={classes.link}
-                  style={{
-                    fontWeight: router.pathname === link && "bold",
-                    borderBottom:
-                      router.pathname === link && "1px solid #757ce8",
-                  }}
-                >
+      <Container maxWidth="md">
+        <Typography className={classes.text}>
+          Questions? Call 0120-996-012
+        </Typography>
+        <Grid container className={classes.link__container} spacing={4}>
+          {lists.map(({ name, link }, idx) => (
+            <Grid item xs={6} sm={4} md={3} key={idx}>
+              <Typography style={{ lineHeight: 1 }}>
+                <Link href={link} className={classes.link_text}>
                   {name}
-                </Typography>
-              </Link>
+                </Link>
+              </Typography>
             </Grid>
           ))}
         </Grid>
-        <Grid container direction="column" style={{ margin: "1.2em 0" }}>
-          <Social />
-        </Grid>
-        <Grid
-          item
-          container
-          component={"a"}
-          target="_blank"
-          rel="noreferrer noopener"
-          href="https://satoruakiyama.com"
-          justify="center"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <Typography className={classes.copylight}>
-            &copy;Satoru Akiyama
-          </Typography>
-        </Grid>
+        <Typography className={classes.text}>S-A-flix</Typography>
       </Container>
     </footer>
   );

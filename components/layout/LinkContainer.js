@@ -6,45 +6,19 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {
   Grid,
-  AppBar,
-  Toolbar,
   Typography,
   List,
   ListItem,
   ListItemText,
   SwipeableDrawer,
   IconButton,
-  Button,
 } from "@material-ui/core";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { ROUTES } from "data/ROUTES";
 
-import LinkContainer from "./LinkContainer";
-
-function ElevationScroll(props) {
-  const { children } = props;
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
-
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    background: "transparent",
-    "&.MuiPaper-elevation4": {
-      background: theme.palette.primary.main,
-      boxShadow: "none",
-    },
-  },
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: `5em`,
@@ -88,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.25em",
     color: theme.palette.secondary.main,
     "&:hover": {
-      color: theme.palette.info.main,
+      color: "#ddd",
     },
   },
   signIn: {
@@ -96,12 +70,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const LinkContainer = () => {
   const classes = useStyles();
   const theme = useTheme();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
+  const matchesXL = useMediaQuery(theme.breakpoints.down("xl"));
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -111,7 +85,12 @@ const Header = () => {
 
   const tabs = (
     <>
-      <Grid container justify="flex-end" spacing={4}>
+      <Grid
+        container
+        justify="space-between"
+        spacing={2}
+        style={{ marginRight: "auto" }}
+      >
         {path.map(({ name, link }) => (
           <Grid item key={link}>
             <Link href={link}>
@@ -119,7 +98,9 @@ const Header = () => {
                 className={classes.link}
                 style={{
                   fontWeight: router.pathname === link && "bold",
-                  borderBottom: router.pathname === link && "1px solid #757ce8",
+                  borderBottom:
+                    router.pathname === link &&
+                    `1px solid ${theme.palette.common.red}`,
                 }}
               >
                 {name}
@@ -180,48 +161,6 @@ const Header = () => {
       </IconButton>
     </>
   );
-  return (
-    <>
-      <ElevationScroll>
-        <AppBar className={classes.appBar}>
-          <Toolbar
-            disableGutters
-            style={{
-              maxWidth: "1920px",
-              margin: "0 auto",
-              width: "100%",
-              padding: matchesSM ? "0 16px" : matchesLG ? "24px" : "24px 32px",
-            }}
-          >
-            <Grid
-              container
-              justify={router.pathname === "/" ? "space-between" : "flex-start"}
-              alignItems="center"
-            >
-              <Grid item>
-                <Link href="/">
-                  <Typography className={classes.logo}>S-A-FLIX</Typography>
-                </Link>
-              </Grid>
-              {router.pathname === "/" && (
-                <Button className={classes.signIn}>Sign In</Button>
-              )}
-              {router.pathname !== "/" && (
-                <Grid item style={{ marginLeft: "30px" }}>
-                  {" "}
-                  <LinkContainer />{" "}
-                </Grid>
-              )}
-              {router.pathname !== "/" && (
-                <Grid item style={{ marginLeft: "auto" }}>
-                  <Button className={classes.signIn}>Sign In</Button>
-                </Grid>
-              )}
-            </Grid>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-    </>
-  );
+  return tabs;
 };
-export default Header;
+export default LinkContainer;

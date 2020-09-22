@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import Me from "./Me";
 
 import Head from "next/head";
 
@@ -54,11 +55,13 @@ const Layout = ({ children, title, description, ogImage, url }) => {
       <Header />
       <main>{children}</main>
       <Footer />
+      <Me />
       <style jsx global>
         {`
           html,
           body {
-            background: #f9f9f9;
+            background: #000 !important;
+            color: #fff !important;
             overflow-x: hidden;
             padding: 0 !important;
           }
