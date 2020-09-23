@@ -52,7 +52,7 @@ const Home = ({
       title="S-A-flix | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
-      <PageHeader data={originals[0]} media_type={`tv`} />
+      <PageHeader data={originals[8]} media_type={`tv`} />
     </Layout>
   );
 };

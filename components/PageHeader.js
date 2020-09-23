@@ -1,10 +1,10 @@
 import { Grid, Typography, Container, Button } from "@material-ui/core";
 import { PlayArrow, Info, VolumeOff, VolumeUp } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import { getVideo } from "lib/api";
-
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
+import { ModalContext } from "providers/modal.provider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,10 +12,13 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: "100%",
-    height: "75vh",
+    height: "85vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    [theme.breakpoints.down("md")]: {
+      height: "75vh",
+    },
   },
   inner: {
     backgroundImage:
@@ -24,12 +27,18 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: "100%",
-    height: "75vh",
+    height: "85vh",
+    [theme.breakpoints.down("md")]: {
+      height: "75vh",
+    },
   },
   content: {
-    height: "65vh",
+    height: "75vh",
     width: "100%",
     maxWidth: "600px",
+    [theme.breakpoints.down("md")]: {
+      height: "65vh",
+    },
   },
   play__btn: {
     background: theme.palette.secondary.main,
@@ -61,7 +70,8 @@ const useStyles = makeStyles((theme) => ({
 
 const PageHeader = ({ data, media_type }) => {
   const classes = useStyles();
-
+  const theme = useTheme();
+  const matcehsMD = useMediaQuery(theme.breakpoints.down("md"));
   //   console.log(data);
 
   const { backdrop_path, title, overview, id, name } = data;
@@ -69,18 +79,13 @@ const PageHeader = ({ data, media_type }) => {
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
   const [sound, setSound] = useState(true);
-  const video = async () => {
-    const src = await getVideo(id, media_type);
-    console.log(src);
-  };
-
-  useEffect(() => {
-    video();
-  }, []);
-
   const handleSound = () => setSound(!sound);
+
+  //   modal
+  const { setVideoUrl } = useContext(ModalContext);
+
   return (
-    <div style={{ marginBottom: "80vh" }}>
+    <div style={{ marginBottom: matcehsMD ? "75vh" : "85vh" }}>
       <div
         className={classes.root}
         style={{
@@ -109,6 +114,7 @@ const PageHeader = ({ data, media_type }) => {
                       <Button
                         className={classes.play__btn}
                         startIcon={<PlayArrow color="primary" />}
+                        onClick={() => setVideoUrl(id, media_type)}
                       >
                         Play
                       </Button>

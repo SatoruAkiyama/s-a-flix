@@ -1,39 +1,29 @@
+import Head from "next/head";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import Me from "./Me";
-
-import Head from "next/head";
+import ModalVideo from "./ModalVideo";
 
 const Layout = ({ children, title, description, ogImage, url }) => {
   // website Url
-  const pageUrl =
-    "https://nextjs-and-material-ui-template-with-header-and-footer.vercel.app/";
+  const pageUrl = "https://s-a-flix.vercel.app/";
   // when you share this page on facebook you'll see this image
   const ogImg = "https://i.imgur.com/1H2TK2B.png";
   return (
     <>
       <Head>
-        <title>
-          {title
-            ? title
-            : "Template - Next.js and Material-UI with Header and Footer"}
-        </title>
+        <title>{title ? title : "S-A-flix | Netflix Clone"}</title>
         <meta
           name="description"
           key="description"
           content={
-            description
-              ? description
-              : "This is a Template using Next.js and Material-UI with Header and Footer."
+            description ? description : "This is a Netflix Clone Application."
           }
         />
         <meta
           property="og:title"
-          content={
-            title
-              ? title
-              : "Template - Next.js and Material-UI with Header and Footer"
-          }
+          content={title ? title : "S-A-flix | Netflix Clone"}
           key="og:title"
         />
         <meta property="og:url" content={url ? url : pageUrl} key="og:url" />
@@ -45,14 +35,13 @@ const Layout = ({ children, title, description, ogImage, url }) => {
         <meta
           property="og:description"
           content={
-            description
-              ? description
-              : "This is a Template using Next.js and Material-UI with Header and Footer."
+            description ? description : "This is a Netflix Clone Application."
           }
           key="og:description"
         />
       </Head>
       <Header />
+      <ModalVideo />
       <main>{children}</main>
       <Footer />
       <Me />
