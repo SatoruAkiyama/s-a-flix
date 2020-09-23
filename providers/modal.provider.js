@@ -7,20 +7,30 @@ export const ModalContext = createContext({
   setVideoUrl: () => {},
   closeMovieModal: () => {},
 
-  // info: "",
-  // setInfo: () => {},
+  info: {},
+  infoModal: false,
+  setInfoContent: () => {},
+  closeInfoModal: () => {},
 });
 
 const ModalProvider = ({ children }) => {
   const [video, setVideo] = useState("");
-  const [movieModal, setMovieModalHidden] = useState(false);
+  const [movieModal, setMovieModal] = useState(false);
   const setVideoUrl = async (id, type) => {
     const videoUrl = await getVideo(id, type);
     await setVideo(videoUrl);
-    setMovieModalHidden(true);
-    console.log(video);
+    setMovieModal(true);
   };
-  const closeMovieModal = () => setMovieModalHidden(false);
+  const closeMovieModal = () => setMovieModal(false);
+
+  const [info, setInfo] = useState({});
+  const [infoModal, setInfoModal] = useState(false);
+  const setInfoContent = async (infoObj) => {
+    await setInfo(infoObj);
+    setInfoModal(true);
+  };
+  const closeInfoModal = () => setInfoModal(false);
+
   return (
     <ModalContext.Provider
       value={{
@@ -28,6 +38,11 @@ const ModalProvider = ({ children }) => {
         movieModal,
         setVideoUrl,
         closeMovieModal,
+
+        info,
+        infoModal,
+        setInfoContent,
+        closeInfoModal,
       }}
     >
       {children}

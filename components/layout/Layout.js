@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Me from "./Me";
 import ModalVideo from "./ModalVideo";
+import ModalInfo from "./ModalInfo";
 
 const Layout = ({ children, title, description, ogImage, url }) => {
   // website Url
@@ -42,6 +43,7 @@ const Layout = ({ children, title, description, ogImage, url }) => {
       </Head>
       <Header />
       <ModalVideo />
+      <ModalInfo />
       <main>{children}</main>
       <Footer />
       <Me />

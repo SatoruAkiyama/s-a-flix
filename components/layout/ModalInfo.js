@@ -1,10 +1,20 @@
-import { Grid, Typography, Container, Button } from "@material-ui/core";
-import { PlayArrow, Info, Add } from "@material-ui/icons";
+import { useContext } from "react";
+import { ModalContext } from "providers/modal.provider";
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import { useState, useContext } from "react";
-import { ModalContext } from "providers/modal.provider";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Button,
+  Grid,
+  Typography,
+  Container,
+} from "@material-ui/core";
+
+import { PlayArrow, Add } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,33 +22,36 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: "100%",
-    height: "85vh",
+    height: "400px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    [theme.breakpoints.down("md")]: {
-      height: "75vh",
+    [theme.breakpoints.down("sm")]: {
+      height: "300px",
     },
   },
   inner: {
     backgroundImage:
-      "linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 60%,rgba(0,0,0,.8) 100%)",
+      "linear-gradient(to top,rgba(0,0,0) 0,rgba(0,0,0,0) 40%,rgb(0 0 0 / 20%) 100%)",
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
-    height: "85vh",
-    [theme.breakpoints.down("md")]: {
-      height: "75vh",
+    height: "400px",
+    [theme.breakpoints.down("sm")]: {
+      height: "300px",
     },
   },
   content: {
-    height: "80vh",
-    width: "100%",
-    maxWidth: "600px",
-    [theme.breakpoints.down("md")]: {
-      height: "70vh",
-    },
+    height: "100%",
+    position: "relative",
+    zIndex: "10",
+  },
+  rate: {
+    color: "#33eb91",
+  },
+  date: {
+    color: "#a3a3a3",
   },
   play__btn: {
     background: theme.palette.secondary.main,
@@ -50,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: `rgb(255 255 255 / 90%) !important`,
     },
   },
-  info__btn: {
+  add__btn: {
     color: theme.palette.secondary.main,
     height: " 40px",
     background: "rgb(133 133 133 / 60%)",
@@ -58,22 +71,16 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: `rgb(133 133 133 / 80%) !important`,
     },
   },
-  add__btn: {
-    color: theme.palette.secondary.main,
-    height: " 40px",
-    background: "#000",
-    "&.MuiButton-root:hover": {
-      backgroundColor: `rgb(0 0 0  / 70%) !important`,
-    },
-  },
 }));
 
-const PageHeader = ({ data, media_type }) => {
+export default function ModalVideo() {
   const classes = useStyles();
   const theme = useTheme();
-  const matcehsMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
-  console.log(data);
+  const { info, infoModal, closeInfoModal, setVideoUrl } = useContext(
+    ModalContext
+  );
   //   backdrop_path: "/70YdbMELM4b8x8VXjlubymb2bQ0.jpg"
   // first_air_date: "2017-03-19"
   // genre_ids: Array(2)
@@ -94,39 +101,62 @@ const PageHeader = ({ data, media_type }) => {
   // poster_path: "/6P6tXhjT5tK3qOXzxF9OMLlG7iz.jpg"
   // vote_average: 8.8
   // vote_count: 2097
-
-  const { backdrop_path, title, name, overview, id } = data;
-
+  const {
+    backdrop_path,
+    title,
+    name,
+    overview,
+    id,
+    vote_average,
+    first_air_date,
+    media_type,
+  } = info;
   const imageUrl = "https://image.tmdb.org/t/p/original";
-
-  const [sound, setSound] = useState(true);
-  const handleSound = () => setSound(!sound);
-
-  //   modal
-  const { setVideoUrl, setInfoContent } = useContext(ModalContext);
-
   return (
-    <div style={{ marginBottom: matcehsMD ? "75vh" : "85vh" }}>
-      <div
-        className={classes.root}
-        style={{
-          backgroundImage: `url(${imageUrl}${backdrop_path})`,
+    <div>
+      <Dialog
+        open={infoModal}
+        onClose={closeInfoModal}
+        fullScreen={matchesXS}
+        PaperProps={{
+          style: {
+            padding: 0,
+            backgroundColor: "#000",
+            height: matchesXS ? "100vh" : "75vh",
+            border: "1px solid #fff",
+          },
         }}
+        fullWidth
+        maxWidth="md"
       >
-        <div className={classes.inner}>
-          <Container maxWidth="xl">
+        <DialogContent>
+          <DialogActions
+            style={{
+              zIndex: 20,
+              position: "absolute",
+              right: "10px",
+            }}
+          >
+            <Button onClick={closeInfoModal}>Close</Button>
+          </DialogActions>
+          <div
+            className={classes.root}
+            style={{
+              backgroundImage: `url(${imageUrl}${backdrop_path})`,
+            }}
+          >
+            <div className={classes.inner} />
+          </div>
+          <Container maxWidth="xl" className={classes.content}>
             <Grid
               container
               direction="column"
               justify="flex-end"
-              className={classes.content}
               spacing={2}
+              style={{ height: "100%" }}
             >
               <Grid item>
                 <Typography variant="h1">{title ? title : name}</Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2">{overview}</Typography>
               </Grid>
               <Grid item container spacing={2}>
                 <Grid item>
@@ -139,30 +169,30 @@ const PageHeader = ({ data, media_type }) => {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button
-                    className={classes.info__btn}
-                    startIcon={<Info />}
-                    onClick={() => setInfoContent({ ...data, media_type })}
-                  >
-                    More Info
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    className={classes.add__btn}
-                    startIcon={<Add />}
-                    // onClick={() => setInfoContent({ ...data, media_type })}
-                  >
+                  <Button className={classes.add__btn} startIcon={<Add />}>
                     My List
                   </Button>
                 </Grid>
               </Grid>
+              <Grid item container spacing={2}>
+                <Grid item>
+                  <Typography variant="body2" className={classes.rate}>
+                    Rating: {vote_average * 10}%
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="body2" className={classes.date}>
+                    {first_air_date}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Typography variant="body2">{overview}</Typography>
+              </Grid>
             </Grid>
           </Container>
-        </div>
-      </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
-};
-
-export default PageHeader;
+}

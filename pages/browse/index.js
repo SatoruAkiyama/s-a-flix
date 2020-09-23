@@ -13,21 +13,21 @@ import {
 } from "lib/api";
 
 export async function getStaticProps() {
-  const trending = await getTrendingMovies();
-  const topRatedMovies = await getTopRatedMovies();
-  const topRatedTv = await getTopRatedTv();
-  const popularMovies = await getPopularMovies();
-  const popularTv = await getPopularTv();
+  // const trending = await getTrendingMovies();
+  // const topRatedMovies = await getTopRatedMovies();
+  // const topRatedTv = await getTopRatedTv();
+  // const popularMovies = await getPopularMovies();
+  // const popularTv = await getPopularTv();
   const originals = await getOriginals();
   // const newReleases = await getNewReleases();
   return {
     revalidate: 1,
     props: {
-      trending,
-      topRatedMovies,
-      topRatedTv,
-      popularMovies,
-      popularTv,
+      // trending,
+      // topRatedMovies,
+      // topRatedTv,
+      // popularMovies,
+      // popularTv,
       originals,
       // newReleases,
     },
