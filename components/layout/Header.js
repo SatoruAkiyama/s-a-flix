@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     width: "max-content",
     fontSize: "2rem",
     fontWeight: "bold",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem",
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.25rem",
     },
@@ -48,6 +51,7 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
 
   const router = useRouter();
@@ -79,7 +83,12 @@ const Header = () => {
                 <Button className={classes.signIn}>Sign In</Button>
               )}
               {router.pathname !== "/" && (
-                <Grid item style={{ marginLeft: matchesSM ? "6px" : "40px" }}>
+                <Grid
+                  item
+                  style={{
+                    marginLeft: matchesSM ? "6px" : matchesMD ? "20px" : "40px",
+                  }}
+                >
                   <LinkContainer />
                 </Grid>
               )}

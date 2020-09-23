@@ -13,7 +13,7 @@ import { ROUTES } from "data/ROUTES";
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    fontSize: "1.25em",
+    fontSize: "1em",
     color: theme.palette.secondary.main,
     "&:hover": {
       color: "#919191",

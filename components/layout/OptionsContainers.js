@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiFormControl-root": {
       width: "180px",
       [theme.breakpoints.down("xs")]: {
-        width: "140px",
+        width: "135px",
       },
     },
     "& .MuiFilledInput-root": {

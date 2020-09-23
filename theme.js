@@ -78,9 +78,19 @@ const theme = createMuiTheme({
         fontSize: "18px",
       },
     },
+    body2: {
+      color: mainWhite,
+      fontSize: "18px",
+      [breakpoints.down("sm")]: {
+        fontSize: "16px",
+      },
+      [breakpoints.down("xs")]: {
+        fontSize: "14px",
+      },
+    },
     button: {
       background: mainRed,
-      letterSpacing: ".1em",
+      textTransform: "none",
       "&.MuiButton-text": {
         padding: " 6px 16px !important",
       },
