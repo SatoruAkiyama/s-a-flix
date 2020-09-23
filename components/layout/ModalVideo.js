@@ -29,7 +29,7 @@ export default function ModalVideo() {
           style: {
             padding: 0,
             backgroundColor: "#000",
-            height: "75vh",
+            height: matchesXS ? "100vh" : "75vh",
             border: "1px solid #fff",
           },
         }}

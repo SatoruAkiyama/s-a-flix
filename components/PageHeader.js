@@ -61,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
   add__btn: {
     color: theme.palette.secondary.main,
     height: " 40px",
-    background: "#000",
+    background: "rgb(139 139 139 / 70%)",
     "&.MuiButton-root:hover": {
-      backgroundColor: `rgb(0 0 0  / 70%) !important`,
+      backgroundColor: `rgb(139 139 139 / 90%) !important`,
     },
   },
 }));
@@ -73,7 +73,7 @@ const PageHeader = ({ data, media_type }) => {
   const theme = useTheme();
   const matcehsMD = useMediaQuery(theme.breakpoints.down("md"));
 
-  console.log(data);
+  // console.log(data);
   //   backdrop_path: "/70YdbMELM4b8x8VXjlubymb2bQ0.jpg"
   // first_air_date: "2017-03-19"
   // genre_ids: Array(2)
@@ -98,9 +98,6 @@ const PageHeader = ({ data, media_type }) => {
   const { backdrop_path, title, name, overview, id } = data;
 
   const imageUrl = "https://image.tmdb.org/t/p/original";
-
-  const [sound, setSound] = useState(true);
-  const handleSound = () => setSound(!sound);
 
   //   modal
   const { setVideoUrl, setInfoContent } = useContext(ModalContext);
