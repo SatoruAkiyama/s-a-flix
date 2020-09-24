@@ -105,6 +105,7 @@ export default function ModalVideo() {
         }}
         fullWidth
         maxWidth="md"
+        scroll={matchesXS ? "body" : "paper"}
       >
         <DialogContent>
           <DialogActions
@@ -130,7 +131,7 @@ export default function ModalVideo() {
               direction="column"
               justify="flex-end"
               spacing={2}
-              style={{ height: "100%" }}
+              style={{ height: "100%", marginTop: matchesXS && "300px" }}
             >
               <Grid item>
                 <Typography variant="h1">{title ? title : name}</Typography>
@@ -159,7 +160,7 @@ export default function ModalVideo() {
                 </Grid>
                 <Grid item>
                   <Typography variant="body2" className={classes.date}>
-                    {first_air_date}
+                    {first_air_date?.substr(0, 4)}
                   </Typography>
                 </Grid>
               </Grid>

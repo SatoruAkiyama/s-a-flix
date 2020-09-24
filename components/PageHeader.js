@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: "100%",
-    height: "85vh",
+    height: "80vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -22,22 +22,22 @@ const useStyles = makeStyles((theme) => ({
   },
   inner: {
     backgroundImage:
-      "linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 60%,rgba(0,0,0,.8) 100%)",
+      "linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,.2) 60%,rgba(0,0,0,.8) 100%)",
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
-    height: "85vh",
+    height: "80vh",
     [theme.breakpoints.down("md")]: {
       height: "75vh",
     },
   },
   content: {
-    height: "80vh",
+    height: "77.5vh",
     width: "100%",
     maxWidth: "600px",
     [theme.breakpoints.down("md")]: {
-      height: "70vh",
+      height: "75vh",
     },
   },
   play__btn: {
@@ -73,28 +73,6 @@ const PageHeader = ({ data }) => {
   const theme = useTheme();
   const matcehsMD = useMediaQuery(theme.breakpoints.down("md"));
 
-  // console.log(data);
-  //   backdrop_path: "/70YdbMELM4b8x8VXjlubymb2bQ0.jpg"
-  // first_air_date: "2017-03-19"
-  // genre_ids: Array(2)
-  // 0: 18
-  // 1: 10751
-  // length: 2
-  // __proto__: Array(0)
-  // id: 70785
-  // name: "Anne with an E"
-  // origin_country: Array(1)
-  // 0: "CA"
-  // length: 1
-  // __proto__: Array(0)
-  // original_language: "en"
-  // original_name: "Anne with an E"
-  // overview: "A coming-of-age story about an outsider who, against all odds and numerous challenges, fights for love and acceptance and for her place in the world. The series centers on a young orphaned girl in the late 1890’s, who, after an abusive childhood spent in orphanages and the homes of strangers, is mistakenly sent to live with an elderly woman and her aging brother. Over time, 13-year-old Anne will transform their lives and eventually the small town in which they live with her unique spirit, fierce intellect and brilliant imagination."
-  // popularity: 204.683
-  // poster_path: "/6P6tXhjT5tK3qOXzxF9OMLlG7iz.jpg"
-  // vote_average: 8.8
-  // vote_count: 2097
-
   const { backdrop_path, title, name, overview, id, media_type } = data;
 
   const imageUrl = "https://image.tmdb.org/t/p/original";
@@ -123,7 +101,11 @@ const PageHeader = ({ data }) => {
                 <Typography variant="h1">{title ? title : name}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2">{overview}</Typography>
+                <Typography variant="body2">
+                  {overview.length > 500
+                    ? overview.substr(0, 500) + "..."
+                    : overview}
+                </Typography>
               </Grid>
               <Grid item container spacing={2}>
                 <Grid item>

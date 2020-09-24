@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     transition: "all 0.3s",
     background: "#303030cf",
-    paddingTop: "40px",
+    padding: "40px 20px 0",
     "&:hover": {
       transform: "scale3d(1.2, 1.2, 1.2)",
     },
@@ -97,7 +97,7 @@ const VideoCard = ({ data, poster }) => {
             poster ? poster_path : backdrop_path
           })`,
         }}
-        onClick={() => setInfoContent({ ...data, type })}
+        onClick={() => setInfoContent({ ...data })}
       >
         {!backdrop_path && (
           <Typography variant="body2" align="center">
