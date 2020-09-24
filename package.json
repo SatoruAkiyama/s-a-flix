@@ -11,7 +11,9 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-player": "^2.6.2"
+    "react-player": "^2.6.2",
+    "react-slick": "^0.27.11",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "dev": "next",

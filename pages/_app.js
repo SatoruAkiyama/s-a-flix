@@ -7,6 +7,10 @@ import theme from "theme";
 
 import ModalProvider from "providers/modal.provider";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "styles/global.css";
+
 export default function MyApp(props) {
   const { Component, pageProps } = props;
 

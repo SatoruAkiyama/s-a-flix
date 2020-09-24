@@ -3,7 +3,7 @@ import { PlayArrow, Info, Add } from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { ModalContext } from "providers/modal.provider";
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PageHeader = ({ data, media_type }) => {
+const PageHeader = ({ data }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matcehsMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -95,7 +95,7 @@ const PageHeader = ({ data, media_type }) => {
   // vote_average: 8.8
   // vote_count: 2097
 
-  const { backdrop_path, title, name, overview, id } = data;
+  const { backdrop_path, title, name, overview, id, media_type } = data;
 
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
@@ -103,7 +103,7 @@ const PageHeader = ({ data, media_type }) => {
   const { setVideoUrl, setInfoContent } = useContext(ModalContext);
 
   return (
-    <div style={{ marginBottom: matcehsMD ? "75vh" : "85vh" }}>
+    <div style={{ marginBottom: matcehsMD ? "80vh" : "90vh" }}>
       <div
         className={classes.root}
         style={{
@@ -139,7 +139,7 @@ const PageHeader = ({ data, media_type }) => {
                   <Button
                     className={classes.info__btn}
                     startIcon={<Info />}
-                    onClick={() => setInfoContent({ ...data, media_type })}
+                    onClick={() => setInfoContent(data)}
                   >
                     More Info
                   </Button>

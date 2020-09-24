@@ -88,7 +88,7 @@ export default function ModalVideo() {
     first_air_date,
     media_type,
   } = info;
-  const imageUrl = "https://image.tmdb.org/t/p/original";
+  const imageUrl = "https://image.tmdb.org/t/p/w1280";
   return (
     <div>
       <Dialog
