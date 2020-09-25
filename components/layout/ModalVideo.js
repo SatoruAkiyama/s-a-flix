@@ -40,7 +40,22 @@ export default function ModalVideo() {
           <DialogActions style={{ padding: "0 0 15px" }}>
             <Button onClick={closeMovieModal}>Close</Button>
           </DialogActions>
-          {video ? (
+          {video === "noVideo" ? (
+            // in preparation for the case when there are no video
+            <DialogContentText
+              color="secondary"
+              style={{
+                textAlign: "center",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,-50%)",
+                width: "100%",
+              }}
+            >
+              Sorry, there is no video.
+            </DialogContentText>
+          ) : (
             <ReactPlayer
               url={video}
               playing
@@ -54,8 +69,6 @@ export default function ModalVideo() {
               width="100%"
               height="90%"
             />
-          ) : (
-            <DialogContentText>Loading</DialogContentText>
           )}
         </DialogContent>
       </Dialog>

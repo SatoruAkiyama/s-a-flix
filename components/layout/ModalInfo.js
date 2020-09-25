@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     position: "relative",
     zIndex: "10",
+    paddingBottom: "15px",
     [theme.breakpoints.down("sm")]: {
       height: "90%",
     },
