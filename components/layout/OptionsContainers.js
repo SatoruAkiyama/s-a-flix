@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import { Grid, TextField, Popper, Fade, Paper } from "@material-ui/core";
 import {
@@ -76,6 +77,8 @@ const OptionsContainer = () => {
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
+  const router = useRouter();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState();
@@ -106,7 +109,10 @@ const OptionsContainer = () => {
         setOpen(false);
       }
     } else {
-      console.log(text);
+      router.push({
+        pathname: "/search",
+        query: { q: text },
+      });
     }
   };
 

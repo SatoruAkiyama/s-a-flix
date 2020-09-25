@@ -87,6 +87,7 @@ export default function ModalVideo() {
     vote_average,
     first_air_date,
     media_type,
+    poster_path,
   } = info;
   const imageUrl = "https://image.tmdb.org/t/p/w1280";
   return (
@@ -120,7 +121,9 @@ export default function ModalVideo() {
           <div
             className={classes.root}
             style={{
-              backgroundImage: `url(${imageUrl}${backdrop_path})`,
+              backgroundImage: backdrop_path
+                ? `url(${imageUrl}${backdrop_path})`
+                : `url(${imageUrl}${poster_path})`,
             }}
           >
             <div className={classes.inner} />

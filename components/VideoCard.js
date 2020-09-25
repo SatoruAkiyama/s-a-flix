@@ -93,13 +93,15 @@ const VideoCard = ({ data, poster }) => {
       <div
         className={classes.img}
         style={{
-          backgroundImage: `url(${imageUrl}${
-            poster ? poster_path : backdrop_path
-          })`,
+          backgroundImage: backdrop_path
+            ? `url(${imageUrl}${poster ? poster_path : backdrop_path})`
+            : poster_path
+            ? `url(${imageUrl}${poster_path})`
+            : null,
         }}
         onClick={() => setInfoContent({ ...data })}
       >
-        {!backdrop_path && (
+        {!backdrop_path && !poster_path && (
           <Typography variant="body2" align="center">
             {title ? title : name}
           </Typography>

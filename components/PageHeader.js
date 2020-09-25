@@ -73,7 +73,15 @@ const PageHeader = ({ data }) => {
   const theme = useTheme();
   const matcehsMD = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { backdrop_path, title, name, overview, id, media_type } = data;
+  const {
+    backdrop_path,
+    title,
+    name,
+    overview,
+    id,
+    media_type,
+    poster_path,
+  } = data;
 
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
@@ -85,7 +93,9 @@ const PageHeader = ({ data }) => {
       <div
         className={classes.root}
         style={{
-          backgroundImage: `url(${imageUrl}${backdrop_path})`,
+          backgroundImage: backdrop_path
+            ? `url(${imageUrl}${backdrop_path})`
+            : `url(${imageUrl}${poster_path})`,
         }}
       >
         <div className={classes.inner}>
