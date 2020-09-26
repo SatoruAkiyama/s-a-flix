@@ -1,9 +1,21 @@
-import { Grid, Typography, TextField, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser, selectErrorMessage } from "redux/user/userSelector";
+import { googleSignInStart, emailSignInStart } from "redux/user/userActions";
 import Layout from "components/layout/Layout";
 import Link from "components/Link";
+import existUser from "hoc/exsitUser.hoc";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,17 +66,18 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     maxWidth: "450px",
-    height: "600px",
+    margin: "0 auto",
+    height: "630px",
     position: "absolute",
-    top: "50%",
+    top: "52%",
     left: "50%",
     transform: "translate(-50%,-50%)",
     backgroundColor: "rgba(0,0,0, 0.7)",
-    padding: "60px 68px",
+    padding: "40px 60px",
     [theme.breakpoints.down("xs")]: {
       maxWidth: "600px",
       overflowY: "auto",
-      padding: "100px 40px",
+      padding: "70px 40px",
     },
   },
   btn: {
@@ -77,14 +90,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   link: {
+    fontSize: "18px",
     "&:hover": {
       borderBottom: "1px solid #fff",
+    },
+  },
+  google: {
+    cursor: "pointer",
+    fontSize: "16px",
+    color: "#fff",
+    borderBottom: "1px solid transparent",
+    "&:hover": {
+      borderColor: "#fff",
     },
   },
 }));
 
 const Login = () => {
   const classes = useStyles();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -97,13 +121,21 @@ const Login = () => {
   });
   const { emailHelper, passwordHelper } = helperText;
 
+  const [sending, setSending] = useState(false);
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const isCurrentUser = useSelector(selectCurrentUser);
+  const errorMessage = useSelector(selectErrorMessage);
+
+  //   form function
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
     });
-    // setEmail(e.target.value);
 
     if (name === "email") {
       let valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value);
@@ -131,17 +163,14 @@ const Login = () => {
         emailHelper: "Please enter a valid email address",
       });
     } else {
-      console.log(email, password);
-      setHelper({
-        emailHelper: "",
-        passwordHelper: "",
-      });
-      setForm({
-        email: "",
-        password: "",
-      });
+      setSending(true);
+      dispatch(emailSignInStart(form));
     }
   };
+
+  if (isCurrentUser) {
+    router.push("/profiles");
+  }
 
   return (
     <Layout
@@ -185,14 +214,50 @@ const Login = () => {
                 helperText={passwordHelper}
               />
             </Grid>
-            <Grid item style={{ margin: "40px 0 20px" }}>
-              <Button className={classes.btn} onClick={handleSubmit}>
-                Sign In
+            <Grid item style={{ margin: "20px 0" }}>
+              <span
+                className="error-message"
+                style={{
+                  color: "#e50914",
+                  fontSize: "16px",
+                  lineHeight: "1.2",
+                  marginBottom: "5px",
+                }}
+              >
+                {errorMessage}
+              </span>
+              <Button
+                style={{ margin: "10px 0 0" }}
+                className={classes.btn}
+                onClick={handleSubmit}
+              >
+                {sending ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <>Sign In</>
+                )}
               </Button>
             </Grid>
-            <Grid item container justify="space-between">
+            <Grid item container alignItems="center" spacing={1}>
               <Grid item>
-                <Typography variant="body2" style={{ color: "#757575" }}>
+                <AccountBoxIcon color="secondary" />
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="body2"
+                  className={classes.google}
+                  onClick={() => dispatch(googleSignInStart())}
+                >
+                  Sign In With Google
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container spacing={2}>
+              <Grid item>
+                <Typography
+                  variant="body2"
+                  style={{ color: "rgba(140,140,140)", fontSize: "18px" }}
+                >
                   New to S-A-flix?
                 </Typography>
               </Grid>
@@ -212,4 +277,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default existUser(Login);

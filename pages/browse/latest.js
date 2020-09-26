@@ -1,7 +1,9 @@
 import Layout from "components/layout/Layout";
 import PageHeader from "components/PageHeader";
 import VideoSlider from "components/ViideoSlider";
-
+import Redirect from "components/Redirect";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "redux/user/userSelector";
 import { getLatestMovies, getLatestTv } from "lib/api";
 
 export async function getStaticProps() {
@@ -17,6 +19,10 @@ export async function getStaticProps() {
 }
 
 const Home = ({ latestMovies, latestTv }) => {
+  const user = useSelector(selectCurrentUser);
+  if (!user) {
+    return <Redirect to="/" />;
+  }
   return (
     <Layout
       title="Latest | S-A-flix | Netflix Clone"

@@ -1,7 +1,9 @@
 import Layout from "components/layout/Layout";
 import PageHeader from "components/PageHeader";
 import VideoSlider from "components/ViideoSlider";
-
+import Redirect from "components/Redirect";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "redux/user/userSelector";
 import { getTvByGenre } from "lib/api";
 
 export async function getStaticProps() {
@@ -62,6 +64,10 @@ const Home = ({
   warAndPolitics,
   western,
 }) => {
+  const user = useSelector(selectCurrentUser);
+  if (!user) {
+    return <Redirect to="/" />;
+  }
   return (
     <Layout
       title="TV Shows | S-A-flix | Netflix Clone"

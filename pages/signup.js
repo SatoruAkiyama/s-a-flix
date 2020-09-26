@@ -1,9 +1,22 @@
-import { Grid, Typography, TextField, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  emailForSignup,
+  selectSignUpErrorMessage,
+} from "redux/user/userSelector";
+import { signUpStart } from "redux/user/userActions";
 import Layout from "components/layout/Layout";
 import Link from "components/Link";
+import existUser from "hoc/exsitUser.hoc";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,10 +26,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100vh",
     backgroundColor: "#fff",
-    // padding: "0 16px",
-    // [theme.breakpoints.down("xs")]: {
-    //   height: "100vh",
-    // },
     "& .MuiFilledInput-root": {
       borderRadius: "4px",
       height: "60px",
@@ -40,17 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
   mb: {
     marginBottom: "100vh",
-    // [theme.breakpoints.down("xs")]: {
-    //   marginBottom: "100vh",
-    // },
   },
   card: {
     maxWidth: "490px",
     width: "100%",
     margin: "0 auto",
-    // [theme.breakpoints.down("xs")]: {
-    //   margin: "8em auto 6em",
-    // },
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -67,16 +70,21 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: "#000",
+    borderBottom: "1px solid transparent",
     "&:hover": {
-      borderBottom: "1px solid #000",
+      borderColor: "#000",
     },
   },
 }));
 
 const SignUp = () => {
   const classes = useStyles();
+  const emailSignup = useSelector(emailForSignup);
+  const errorMessage = useSelector(selectSignUpErrorMessage);
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState({
-    email: "",
+    email: emailSignup,
     password: "",
   });
   const { email, password } = form;
@@ -86,6 +94,8 @@ const SignUp = () => {
     passwordHelper: "",
   });
   const { emailHelper, passwordHelper } = helperText;
+
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -107,6 +117,14 @@ const SignUp = () => {
         setHelper({ ...helperText, emailHelper: "" });
       }
     }
+    if (name === "password") {
+      password.length < 5
+        ? setHelper({
+            ...helperText,
+            passwordHelper: "Please use at least 6 characters",
+          })
+        : setHelper({ ...helperText, passwordHelper: "" });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -119,18 +137,24 @@ const SignUp = () => {
         ...helperText,
         emailHelper: "Please enter a valid email address",
       });
+    } else if (password.length < 5) {
+      setHelper({
+        ...helperText,
+        passwordHelper: "Please use at least 6 characters",
+      });
     } else {
-      console.log(email, password);
+      setSending(true);
+      dispatch(signUpStart(form));
       setHelper({
         emailHelper: "",
         passwordHelper: "",
       });
-      setForm({
-        email: "",
-        password: "",
-      });
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Layout
@@ -179,8 +203,25 @@ const SignUp = () => {
             />
           </Grid>
           <Grid item style={{ margin: "40px 0 20px" }}>
+            <span
+              className="error-message"
+              style={{
+                color: "#e50914",
+                fontSize: "16px",
+                lineHeight: "1.2",
+                marginBottom: "10px",
+              }}
+            >
+              {errorMessage}
+            </span>
             <Button className={classes.btn} onClick={handleSubmit}>
-              Sign Up
+              {errorMessage ? (
+                <>Sign up</>
+              ) : sending ? (
+                <CircularProgress color="secondary" />
+              ) : (
+                <>Sign up</>
+              )}
             </Button>
           </Grid>
           <Grid item container justify="space-between">
@@ -204,4 +245,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default existUser(SignUp);

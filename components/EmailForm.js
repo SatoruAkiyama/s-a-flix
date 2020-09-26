@@ -1,10 +1,24 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { emailForSignup } from "redux/user/userSelector";
 
-import { TextField, Grid, Button, Typography } from "@material-ui/core";
+import { setEmailForSignup } from "redux/user/userActions";
+
+import {
+  TextField,
+  Grid,
+  Button,
+  Typography,
+  CircularProgress,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    maxWidth: "760px",
+    width: "100%",
+    margin: "0 auto",
     "& .MuiFilledInput-root": {
       backgroundColor: theme.palette.secondary.main,
       borderRadius: 0,
@@ -37,8 +51,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FormPropsTextFields({ id }) {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
+  const emailSignup = useSelector(emailForSignup);
+  const [email, setEmail] = useState(emailSignup);
   const [helperText, setHelper] = useState("");
+  const [sending, setSending] = useState(false);
+
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setEmail(e.target.value);
@@ -61,9 +80,9 @@ export default function FormPropsTextFields({ id }) {
     } else if (!valid) {
       setHelper("Please enter a valid email address");
     } else {
-      console.log(email);
-      setHelper("");
-      setEmail("");
+      setSending(true);
+      dispatch(setEmailForSignup(email));
+      router.push("/signup");
     }
   };
 
@@ -91,7 +110,12 @@ export default function FormPropsTextFields({ id }) {
             className={classes.btn}
             type="submit"
           >
-            GET STARTED
+            {" "}
+            {sending ? (
+              <CircularProgress color="secondary" />
+            ) : (
+              <>GET STARTED</>
+            )}
           </Button>
         </Grid>
       </Grid>

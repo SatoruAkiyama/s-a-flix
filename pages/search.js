@@ -6,9 +6,13 @@ import {
   CircularProgress,
   Grid,
 } from "@material-ui/core";
+
 import Layout from "components/layout/Layout";
-import { getMoviesAndTvByQuery } from "lib/api";
+import Redirect from "components/Redirect";
 import SearchedResults from "components/SearchedResults";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "redux/user/userSelector";
+import { getMoviesAndTvByQuery } from "lib/api";
 
 const SearchPage = () => {
   const router = useRouter();
@@ -22,6 +26,10 @@ const SearchPage = () => {
     };
     getData();
   }, [router.query.q]);
+  const user = useSelector(selectCurrentUser);
+  if (!user) {
+    return <Redirect to="/" />;
+  }
   return (
     <Layout
       title="Search | S-A-FLIX"

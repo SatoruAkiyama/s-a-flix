@@ -2,8 +2,9 @@ import Layout from "components/layout/Layout";
 import IndexTop from "components/IndexTop";
 import OurStories from "components/OurStories";
 import Faq from "components/Faq";
+import existUser from "hoc/exsitUser.hoc";
 
-const About = () => {
+const Index = () => {
   return (
     <Layout
       title="S-A-flix | Netflix Clone"
@@ -16,4 +17,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default existUser(Index);

@@ -1,5 +1,7 @@
 import Link from "components/Link";
-import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+
+import { signOutStart } from "redux/user/userActions";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, Avatar } from "@material-ui/core";
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PopperCard = ({ content }) => {
   const classes = useStyles();
-  const router = useRouter();
+  const dispatch = useDispatch();
   const accounts = [
     {
       name: "John",
@@ -126,7 +128,12 @@ const PopperCard = ({ content }) => {
           </Link>
         </Grid>
         <Grid item>
-          <Typography className={classes.link}>Sign out of S-A-flix</Typography>
+          <Typography
+            className={classes.link}
+            onClick={() => dispatch(signOutStart())}
+          >
+            Sign out of S-A-flix
+          </Typography>
         </Grid>
       </Grid>
     </div>

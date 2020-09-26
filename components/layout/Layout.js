@@ -6,7 +6,17 @@ import Me from "./Me";
 import ModalVideo from "./ModalVideo";
 import ModalInfo from "./ModalInfo";
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { checkUserSession } from "redux/user/userActions";
+
 const Layout = ({ children, title, description, ogImage, url }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, [dispatch]);
+
   // website Url
   const pageUrl = "https://s-a-flix.vercel.app/";
   // when you share this page on facebook you'll see this image
