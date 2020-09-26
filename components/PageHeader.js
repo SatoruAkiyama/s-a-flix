@@ -89,7 +89,7 @@ const PageHeader = ({ data }) => {
   const { setVideoUrl, setInfoContent } = useContext(ModalContext);
 
   return (
-    <div style={{ marginBottom: matcehsMD ? "80vh" : "90vh" }}>
+    <div style={{ marginBottom: matcehsMD ? "80vh" : "85vh" }}>
       <div
         className={classes.root}
         style={{

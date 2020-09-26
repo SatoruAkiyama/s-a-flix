@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiInputLabel-filled": {
       color: "#8c8c8c",
+      fontSize: "18px",
     },
     "& .MuiFormControl-root": {
       width: "100%",

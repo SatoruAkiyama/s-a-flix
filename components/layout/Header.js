@@ -3,7 +3,14 @@ import { useRouter } from "next/router";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { Grid, AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import {
+  Grid,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Container,
+} from "@material-ui/core";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 import LinkContainer from "./LinkContainer";
@@ -52,21 +59,41 @@ const Header = () => {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
-  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
 
   const router = useRouter();
 
+  if (router.pathname === "/login" || router.pathname === "/signup") {
+    return (
+      <Container
+        maxWidth="xl"
+        style={{
+          paddingTop: matchesSM ? "16px" : "20px",
+          paddingBottom: matchesSM ? "16px" : "20px",
+          position: "absolute",
+          top: 0,
+          zIndex: 1300,
+        }}
+      >
+        <Grid container alignItems="center">
+          <Grid item>
+            <Link href="/">
+              <Typography className={classes.logo}>S-A-FLIX</Typography>
+            </Link>
+          </Grid>
+        </Grid>
+      </Container>
+    );
+  }
+
   return (
-    <>
-      <ElevationScroll>
-        <AppBar className={classes.appBar}>
-          <Toolbar
-            disableGutters
+    <ElevationScroll>
+      <AppBar className={classes.appBar}>
+        <Toolbar disableGutters>
+          <Container
+            maxWidth="xl"
             style={{
-              maxWidth: "1920px",
-              margin: "0 auto",
-              width: "100%",
-              padding: matchesSM ? "16px" : matchesLG ? "24px" : "24px 32px",
+              paddingTop: matchesSM ? "16px" : "20px",
+              paddingBottom: matchesSM ? "16px" : "20px",
             }}
           >
             <Grid
@@ -80,7 +107,9 @@ const Header = () => {
                 </Link>
               </Grid>
               {router.pathname === "/" && (
-                <Button className={classes.signIn}>Sign In</Button>
+                <Link href={"/login"}>
+                  <Button className={classes.signIn}>Sign In</Button>
+                </Link>
               )}
               {router.pathname !== "/" && (
                 <Grid
@@ -98,10 +127,10 @@ const Header = () => {
                 </Grid>
               )}
             </Grid>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-    </>
+          </Container>
+        </Toolbar>
+      </AppBar>
+    </ElevationScroll>
   );
 };
 export default Header;
