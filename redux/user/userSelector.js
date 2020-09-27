@@ -38,17 +38,6 @@ export const selectChoseProfile = createSelector([selectUser], (user) =>
   user ? user.choseProfile : null
 );
 
-// export const selectChoseProfileList = createSelector([selectUser], (user) => {
-//   const profiles = [
-//     ...user.currentUser.user1,
-//     ...user.currentUser.user2,
-//     ...user.currentUser.user3,
-//     ...user.currentUser.user4,
-//   ];
-//   const myList = profiles[user.choseProfile].lists;
-//   return myList;
-// });
-
 export const emailForSignup = createSelector(
   [selectUser],
   (user) => user.emailForSignUp

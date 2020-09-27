@@ -117,9 +117,11 @@ const PageHeader = ({ data }) => {
   const handleAdd = async () => {
     setSending(true);
     const myList = await addMyList(userId, chosePlofile, data);
-    dispatch(setMyList(myList));
     if (myList !== "error") {
       setSending(false);
+      dispatch(setMyList(myList));
+    } else {
+      alert("There is some error");
     }
   };
 

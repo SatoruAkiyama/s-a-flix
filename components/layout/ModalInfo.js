@@ -118,9 +118,11 @@ export default function ModalVideo() {
   const handleAdd = async () => {
     setSending(true);
     const myList = await addMyList(userId, chosePlofile, info);
-    dispatch(setMyList(myList));
     if (myList !== "error") {
       setSending(false);
+      dispatch(setMyList(myList));
+    } else {
+      alert("There is some error");
     }
   };
 

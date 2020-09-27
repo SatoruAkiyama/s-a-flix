@@ -11,7 +11,6 @@ import {
   selectChoseProfile,
   selectCurrentUserId,
 } from "redux/user/userSelector";
-
 import { getMyList } from "firebase/util";
 
 const useStyles = makeStyles((theme) => ({
@@ -66,20 +65,25 @@ const ProfilesList = () => {
   const setProfile = async (idx) => {
     dispatch(setChoseProfile(idx));
     const myList = await getMyList(userId, idx);
-    dispatch(setMyList(myList));
-    router.push("/browse");
+
+    if (myList !== "error") {
+      dispatch(setMyList(myList));
+      router.push("/browse");
+    } else {
+      alert("There is some error");
+    }
   };
 
   return (
     <Container maxWidth="xl">
-      {selectChoseProfile ? (
+      {/* {selectChoseProfile ? (
         <Link href="/browse">
           <Typography className={classes.logo}>S-A-FLIX</Typography>
         </Link>
       ) : (
         <Typography className={classes.logo}>S-A-FLIX</Typography>
-      )}
-
+      )} */}
+      <Typography className={classes.logo}>S-A-FLIX</Typography>
       <Grid
         container
         direction="column"
