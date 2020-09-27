@@ -78,3 +78,17 @@ export const setEmailForSignup = (email) => {
     payload: email,
   };
 };
+
+export const setChoseProfile = (num) => {
+  return {
+    type: UserActionTypes.SET_CHOSE_PROFILE,
+    payload: num,
+  };
+};
+
+export const setMyList = (myList) => {
+  return {
+    type: UserActionTypes.SET_MY_LIST,
+    payload: myList,
+  };
+};

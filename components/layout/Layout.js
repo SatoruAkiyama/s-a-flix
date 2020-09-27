@@ -7,20 +7,41 @@ import ModalVideo from "./ModalVideo";
 import ModalInfo from "./ModalInfo";
 
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCurrentUser,
+  selectMyList,
+  selectCurrentUserId,
+  selectChoseProfile,
+} from "redux/user/userSelector";
+import { checkUserSession, setMyList } from "redux/user/userActions";
 
-import { checkUserSession } from "redux/user/userActions";
+import { getMyList } from "firebase/util";
 
-const Layout = ({ children, title, description, ogImage, url }) => {
+const Layout = ({ children, title, description, ogImage, url, hide }) => {
   const dispatch = useDispatch();
+  const user = useSelector(selectCurrentUser);
+  const myList = useSelector(selectMyList);
+  const userId = useSelector(selectCurrentUserId);
+  const chosePlofile = useSelector(selectChoseProfile);
   useEffect(() => {
-    dispatch(checkUserSession());
+    const fecthMyList = async () => {
+      const myList = await getMyList(userId, chosePlofile);
+      dispatch(setMyList(myList));
+    };
+    if (!user) {
+      dispatch(checkUserSession());
+    }
+    if (user && !myList) {
+      fecthMyList();
+    }
   }, [dispatch]);
 
   // website Url
   const pageUrl = "https://s-a-flix.vercel.app/";
   // when you share this page on facebook you'll see this image
   const ogImg = "https://i.imgur.com/1H2TK2B.png";
+
   return (
     <>
       <Head>
@@ -51,12 +72,19 @@ const Layout = ({ children, title, description, ogImage, url }) => {
           key="og:description"
         />
       </Head>
-      <Header />
-      <ModalVideo />
-      <ModalInfo />
-      <main>{children}</main>
-      <Footer />
-      <Me />
+      {hide ? (
+        <main>{children}</main>
+      ) : (
+        <>
+          <Header />
+          <ModalVideo />
+          <ModalInfo />
+          <main>{children}</main>
+          <Footer />
+          <Me />
+        </>
+      )}
+
       <style jsx global>
         {`
           html,

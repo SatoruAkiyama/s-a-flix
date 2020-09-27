@@ -5,6 +5,8 @@ const INITiAL_STATE = {
   errorMessage: null,
   signUpErrorMessage: null,
   emailForSignUp: "",
+  choseProfile: null,
+  myList: null,
 };
 
 const userReducer = (state = INITiAL_STATE, action) => {
@@ -42,6 +44,16 @@ const userReducer = (state = INITiAL_STATE, action) => {
       return {
         ...state,
         emailForSignUp: action.payload,
+      };
+    case UserActionTypes.SET_CHOSE_PROFILE:
+      return {
+        ...state,
+        choseProfile: action.payload,
+      };
+    case UserActionTypes.SET_MY_LIST:
+      return {
+        ...state,
+        myList: action.payload,
       };
     default:
       return state;

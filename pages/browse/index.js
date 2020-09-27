@@ -3,7 +3,7 @@ import PageHeader from "components/PageHeader";
 import VideoSlider from "components/ViideoSlider";
 import Redirect from "components/Redirect";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "redux/user/userSelector";
+import { selectCurrentUser, selectChoseProfile } from "redux/user/userSelector";
 
 import {
   getTrendingMovies,
@@ -51,8 +51,12 @@ const Home = ({
   documentaries,
 }) => {
   const user = useSelector(selectCurrentUser);
+  const choseProfile = useSelector(selectChoseProfile);
   if (!user) {
     return <Redirect to="/" />;
+  }
+  if (!choseProfile) {
+    <Redirect to="/profiels" />;
   }
   return (
     <Layout

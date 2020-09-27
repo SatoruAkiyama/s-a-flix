@@ -1,5 +1,10 @@
 import Link from "components/Link";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setChoseProfile } from "redux/user/userActions";
+import {
+  selectCurrentUserProfiles,
+  selectChoseProfile,
+} from "redux/user/userSelector";
 
 import { signOutStart } from "redux/user/userActions";
 
@@ -47,64 +52,69 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  profile__lists: {
+    cursor: "pointer",
+    "& p": {
+      fontSize: "16px",
+      color: "#757575",
+    },
+    "&:hover": {
+      "& p": {
+        color: "#fff",
+      },
+    },
+  },
 }));
 
 const PopperCard = ({ content }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const accounts = [
-    {
-      name: "John",
-      src:
-        "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375__340.png",
-    },
-    {
-      name: "Arison",
-      src:
-        "https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807__340.png",
-    },
-    {
-      name: "Nick",
-      src:
-        "https://cdn.pixabay.com/photo/2016/11/01/21/11/avatar-1789663__340.png",
-    },
-  ];
+  const profiles = useSelector(selectCurrentUserProfiles);
+  const choseProfile = useSelector(selectChoseProfile);
+
+  const setProfile = (idx) => {
+    dispatch(setChoseProfile(idx));
+  };
 
   return content === "setting" ? (
     <div className={classes.container}>
-      <Grid container direction="column" className={classes.root} spacing={2}>
-        {accounts.map(({ name, src }) => (
+      <Grid container direction="column" className={classes.root} spacing={4}>
+        {profiles.map(({ name, icon }, idx) => (
           <Grid
             item
             container
             wrap="nowrap"
             alignItems="center"
-            spacing={3}
-            key={name}
+            spacing={1}
+            key={idx}
           >
             <Grid item>
-              <Link href="/coming-soon">
-                <Grid
-                  item
-                  container
-                  wrap="nowrap"
-                  alignItems="center"
-                  spacing={3}
-                >
+              <Grid
+                item
+                container
+                wrap="nowrap"
+                alignItems="center"
+                spacing={2}
+                className={classes.profile__lists}
+                onClick={() => setProfile(idx)}
+              >
+                <Grid item>
+                  <Avatar
+                    aria-label="avator image"
+                    className={classes.avatar}
+                    src={icon}
+                  />
+                </Grid>
+                <Grid item container direction="column">
                   <Grid item>
-                    <Avatar
-                      aria-label="avator image"
-                      className={classes.avatar}
-                      src={src}
-                    />
-                  </Grid>
-                  <Grid item container direction="column">
-                    <Grid item>
-                      <Typography className={classes.link}>{name}</Typography>
-                    </Grid>
+                    <Typography
+                      style={{ color: choseProfile === idx && "#fff" }}
+                    >
+                      {name}
+                    </Typography>
                   </Grid>
                 </Grid>
-              </Link>
+              </Grid>
             </Grid>
           </Grid>
         ))}

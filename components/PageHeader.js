@@ -1,10 +1,25 @@
-import { Grid, Typography, Container, Button } from "@material-ui/core";
-import { PlayArrow, Info, Add } from "@material-ui/icons";
+import {
+  Grid,
+  Typography,
+  Container,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
+import { PlayArrow, Info, Add, Check } from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ModalContext } from "providers/modal.provider";
+
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCurrentUserId,
+  selectChoseProfile,
+  selectMyListId,
+} from "redux/user/userSelector";
+import { setMyList } from "redux/user/userActions";
+import { addMyList } from "firebase/util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   info__btn: {
-    color: theme.palette.secondary.main,
     height: " 40px",
     background: "rgb(133 133 133 / 60%)",
     "&.MuiButton-root:hover": {
@@ -59,11 +73,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   add__btn: {
-    color: theme.palette.secondary.main,
     height: " 40px",
     background: "rgb(139 139 139 / 70%)",
     "&.MuiButton-root:hover": {
       backgroundColor: `rgb(139 139 139 / 90%) !important`,
+    },
+  },
+  already_add__btn: {
+    height: " 40px",
+    background: "#26ff2fd4",
+    "&.MuiButton-root:hover": {
+      background: "#26ff2f80 !important",
     },
   },
 }));
@@ -87,6 +107,21 @@ const PageHeader = ({ data }) => {
 
   //   modal
   const { setVideoUrl, setInfoContent } = useContext(ModalContext);
+
+  // add my list
+  const [sending, setSending] = useState(false);
+  const userId = useSelector(selectCurrentUserId);
+  const chosePlofile = useSelector(selectChoseProfile);
+  const myListId = useSelector(selectMyListId);
+  const dispatch = useDispatch();
+  const handleAdd = async () => {
+    setSending(true);
+    const myList = await addMyList(userId, chosePlofile, data);
+    dispatch(setMyList(myList));
+    if (myList !== "error") {
+      setSending(false);
+    }
+  };
 
   return (
     <div style={{ marginBottom: matcehsMD ? "80vh" : "85vh" }}>
@@ -137,13 +172,27 @@ const PageHeader = ({ data }) => {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button
-                    className={classes.add__btn}
-                    startIcon={<Add />}
-                    // onClick={() => setInfoContent({ ...data, media_type })}
-                  >
-                    My List
-                  </Button>
+                  {myListId.includes(id) ? (
+                    <Button
+                      className={classes.already_add__btn}
+                      startIcon={<Check />}
+                      // onClick={handleAdd}
+                    >
+                      Watch
+                    </Button>
+                  ) : sending ? (
+                    <Button className={classes.add__btn}>
+                      <CircularProgress size={20} color="secondary" />
+                    </Button>
+                  ) : (
+                    <Button
+                      className={classes.add__btn}
+                      startIcon={<Add />}
+                      onClick={handleAdd}
+                    >
+                      My List
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
             </Grid>

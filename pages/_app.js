@@ -7,7 +7,8 @@ import theme from "theme";
 
 import ModalProvider from "providers/modal.provider";
 import { Provider } from "react-redux";
-import store from "redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "redux/store";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,7 +28,7 @@ export default function MyApp(props) {
   return (
     <React.Fragment>
       <Head>
-        <title>My page</title>
+        <title>S-A-flix | Netflix Clone</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -35,11 +36,13 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <ModalProvider>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ModalProvider>
+          <PersistGate persistor={persistor}>
+            <ModalProvider>
+              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ModalProvider>
+          </PersistGate>
         </Provider>
       </ThemeProvider>
     </React.Fragment>

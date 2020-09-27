@@ -1,16 +1,23 @@
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { PlayArrow, Info, Add } from "@material-ui/icons";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { PlayArrow, Info, Add, Check } from "@material-ui/icons";
+import {
+  Grid,
+  CircularProgress,
+  Card,
+  CardActions,
+  Typography,
+} from "@material-ui/core";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCurrentUserId,
+  selectChoseProfile,
+  selectMyListId,
+} from "redux/user/userSelector";
+import { setMyList } from "redux/user/userActions";
+import { addMyList } from "firebase/util";
+
 import { ModalContext } from "providers/modal.provider";
 
 const useStyles = makeStyles((theme) => ({
@@ -80,14 +87,35 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.common.red,
     },
   },
+  already_add__btn: {
+    cursor: "pointer",
+    "&:hover": {
+      color: theme.palette.success.main,
+    },
+  },
 }));
 
 const VideoCard = ({ data, poster }) => {
   const classes = useStyles();
   const imageUrl = "https://image.tmdb.org/t/p/w300";
-  //   console.log(data);
+
   const { backdrop_path, media_type, id, title, name, poster_path } = data;
   const { setVideoUrl, setInfoContent } = useContext(ModalContext);
+
+  // add my list
+  const [sending, setSending] = useState(false);
+  const userId = useSelector(selectCurrentUserId);
+  const chosePlofile = useSelector(selectChoseProfile);
+  const myListId = useSelector(selectMyListId);
+  const dispatch = useDispatch();
+  const handleAdd = async () => {
+    setSending(true);
+    const myList = await addMyList(userId, chosePlofile, data);
+    dispatch(setMyList(myList));
+    if (myList !== "error") {
+      setSending(false);
+    }
+  };
   return (
     <Card className={poster ? classes.poster__root : classes.root}>
       <div
@@ -124,11 +152,21 @@ const VideoCard = ({ data, poster }) => {
             />
           </Grid>
           <Grid item>
-            <Add
-              color="secondary"
-              className={classes.btn}
-              //  onClick={() => addMyList({ data })}
-            />
+            {myListId.includes(id) ? (
+              <Check
+                color="secondary"
+                className={classes.already_add__btn}
+                // onClick={handleAdd}
+              />
+            ) : sending ? (
+              <CircularProgress size={20} color="secondary" />
+            ) : (
+              <Add
+                color="secondary"
+                className={classes.btn}
+                onClick={handleAdd}
+              />
+            )}
           </Grid>
         </Grid>
       </CardActions>
