@@ -1,14 +1,18 @@
 import { Grid, Typography, Container, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useRouter } from "next/router";
+import Link from "components/Link";
+
 import { useSelector, useDispatch } from "react-redux";
-import { setChoseProfile } from "redux/user/userActions";
+import { setChoseProfile, setMyList } from "redux/user/userActions";
 import {
   selectCurrentUserProfiles,
   selectChoseProfile,
+  selectCurrentUserId,
 } from "redux/user/userSelector";
-import { useRouter } from "next/router";
-import Link from "components/Link";
+
+import { getMyList } from "firebase/util";
 
 const useStyles = makeStyles((theme) => ({
   root: { minHeight: "90vh", padding: "2em 1em" },
@@ -55,11 +59,14 @@ const ProfilesList = () => {
 
   const dispatch = useDispatch();
   const profiles = useSelector(selectCurrentUserProfiles);
+  const userId = useSelector(selectCurrentUserId);
 
   const router = useRouter();
 
-  const setProfile = (idx) => {
+  const setProfile = async (idx) => {
     dispatch(setChoseProfile(idx));
+    const myList = await getMyList(userId, idx);
+    dispatch(setMyList(myList));
     router.push("/browse");
   };
 

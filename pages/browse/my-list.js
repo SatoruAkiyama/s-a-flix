@@ -42,8 +42,9 @@ const MyList = () => {
           There is no My List...
         </Typography>
       )} */}
-      <Typography variant="h1" align="center" style={{ margin: "5em 0" }}>
-        There is no My List...
+      <Typography variant="h3" align="center" style={{ margin: "30% 0 20%" }}>
+        You have not added anything to{" "}
+        <span style={{ fontWeight: 900 }}> My List </span> yet.
       </Typography>
     </Layout>
   );

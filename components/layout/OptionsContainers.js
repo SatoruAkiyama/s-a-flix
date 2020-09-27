@@ -128,7 +128,7 @@ const OptionsContainer = () => {
                   : classes.setting__paper
               }
             >
-              <PopperCard content={popperCard} />
+              <PopperCard content={popperCard} setOpen={setOpen} />
             </Paper>
           </Fade>
         )}

@@ -23,10 +23,10 @@ const Layout = ({ children, title, description, ogImage, url, hide }) => {
   const user = useSelector(selectCurrentUser);
   const myList = useSelector(selectMyList);
   const userId = useSelector(selectCurrentUserId);
-  const chosePlofile = useSelector(selectChoseProfile);
+  const choseProfile = useSelector(selectChoseProfile);
   useEffect(() => {
     const fecthMyList = async () => {
-      const myList = await getMyList(userId, chosePlofile);
+      const myList = await getMyList(userId, choseProfile);
       dispatch(setMyList(myList));
     };
     if (!user) {

@@ -1,12 +1,17 @@
 import Link from "components/Link";
 import { useSelector, useDispatch } from "react-redux";
-import { setChoseProfile } from "redux/user/userActions";
 import {
   selectCurrentUserProfiles,
   selectChoseProfile,
+  selectCurrentUserId,
 } from "redux/user/userSelector";
+import {
+  signOutStart,
+  setMyList,
+  setChoseProfile,
+} from "redux/user/userActions";
 
-import { signOutStart } from "redux/user/userActions";
+import { getMyList } from "firebase/util";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, Avatar } from "@material-ui/core";
@@ -66,14 +71,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PopperCard = ({ content }) => {
+const PopperCard = ({ content, setOpen }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const profiles = useSelector(selectCurrentUserProfiles);
   const choseProfile = useSelector(selectChoseProfile);
+  const userId = useSelector(selectCurrentUserId);
 
-  const setProfile = (idx) => {
+  const setProfile = async (idx) => {
+    setOpen(false);
     dispatch(setChoseProfile(idx));
+    const myList = await getMyList(userId, idx);
+    dispatch(setMyList(myList));
   };
 
   return content === "setting" ? (
