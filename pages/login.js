@@ -231,7 +231,9 @@ const Login = () => {
                 className={classes.btn}
                 onClick={handleSubmit}
               >
-                {sending ? (
+                {errorMessage ? (
+                  <>Sign In</>
+                ) : sending ? (
                   <CircularProgress color="secondary" />
                 ) : (
                   <>Sign In</>

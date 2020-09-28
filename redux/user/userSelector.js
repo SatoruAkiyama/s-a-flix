@@ -21,19 +21,6 @@ export const selectCurrentUserId = createSelector(
   (currentUser) => (currentUser ? currentUser.id : null)
 );
 
-export const selectCurrentUserProfiles = createSelector(
-  [selectCurrentUser],
-  (currentUser) =>
-    currentUser
-      ? [
-          currentUser.user1,
-          currentUser.user2,
-          currentUser.user3,
-          currentUser.user4,
-        ]
-      : null
-);
-
 export const selectChoseProfile = createSelector([selectUser], (user) =>
   user ? user.choseProfile : null
 );
@@ -49,4 +36,8 @@ export const selectMyList = createSelector([selectUser], (user) =>
 
 export const selectMyListId = createSelector([selectUser], (user) =>
   user.myList ? user.myList.map((ml) => ml.name.id) : null
+);
+
+export const selectProfiles = createSelector([selectUser], (user) =>
+  user.profiles ? user.profiles : null
 );

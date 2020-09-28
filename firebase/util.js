@@ -22,26 +22,22 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     const { email } = userAuth;
     const user1 = {
       name: "User1",
-      icon:
-        "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375__340.png",
+      icon: "/user1.png",
       lists: [],
     };
     const user2 = {
       name: "User2",
-      icon:
-        "https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807__340.png",
+      icon: "/user2.png",
       lists: [],
     };
     const user3 = {
       name: "User3",
-      icon:
-        "https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916__340.png",
+      icon: "/user3.png",
       lists: [],
     };
     const user4 = {
       name: "User4",
-      icon:
-        "https://cdn.pixabay.com/photo/2016/11/01/21/11/avatar-1789663__340.png",
+      icon: "/user4.png",
       lists: [],
     };
 
@@ -148,6 +144,37 @@ export const removeMyList = async (userId, idx, data) => {
     }
     const newData = await getMyList(userId, idx);
     return newData;
+  } catch {
+    return "error";
+  }
+};
+
+export const getProfiles = async (userId) => {
+  try {
+    const userRef = await firestore.collection(`users`).doc(`${userId}`);
+    const userDoc = await userRef.get();
+    const list1 = await userDoc.get(`user1`);
+    const user1 = {
+      name: list1.name,
+      icon: list1.icon,
+    };
+    const list2 = await userDoc.get(`user2`);
+    const user2 = {
+      name: list2.name,
+      icon: list2.icon,
+    };
+    const list3 = await userDoc.get(`user3`);
+    const user3 = {
+      name: list3.name,
+      icon: list3.icon,
+    };
+    const list4 = await userDoc.get(`user4`);
+    const user4 = {
+      name: list4.name,
+      icon: list4.icon,
+    };
+    const profiles = [user1, user2, user3, user4];
+    return profiles;
   } catch {
     return "error";
   }

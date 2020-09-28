@@ -7,6 +7,7 @@ const INITiAL_STATE = {
   emailForSignUp: "",
   choseProfile: null,
   myList: null,
+  profiles: null,
 };
 
 const userReducer = (state = INITiAL_STATE, action) => {
@@ -54,6 +55,11 @@ const userReducer = (state = INITiAL_STATE, action) => {
       return {
         ...state,
         myList: action.payload,
+      };
+    case UserActionTypes.SET_PROFILES:
+      return {
+        ...state,
+        profiles: action.payload,
       };
     default:
       return state;

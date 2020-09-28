@@ -7,6 +7,7 @@ import {
   googleProvider,
   createUserProfileDocument,
   getCuurentUser,
+  getProfiles,
 } from "firebase/util";
 
 import {
@@ -19,6 +20,7 @@ import {
   setMyList,
   setEmailForSignup,
   setChoseProfile,
+  setProfiles,
 } from "./userActions";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -30,6 +32,8 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     );
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+    const profiles = yield call(getProfiles, userSnapshot.id);
+    yield put(setProfiles(profiles));
   } catch (e) {
     yield put(signInFailure(e.message));
   }
@@ -70,6 +74,7 @@ export function* signOut() {
     yield put(setMyList(null));
     yield put(setChoseProfile(null));
     yield put(setEmailForSignup(""));
+    yield put(setProfiles(null));
   } catch (e) {
     yield put(signOutFailure(e.message));
   }

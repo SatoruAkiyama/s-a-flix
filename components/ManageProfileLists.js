@@ -1,13 +1,11 @@
 import { Grid, Typography, Container, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { useRouter } from "next/router";
 import Link from "components/Link";
+import { useRouter } from "next/router";
 
-import { useSelector, useDispatch } from "react-redux";
-import { setChoseProfile, setMyList } from "redux/user/userActions";
-import { selectProfiles, selectCurrentUserId } from "redux/user/userSelector";
-import { getMyList } from "firebase/util";
+import { useSelector } from "react-redux";
+import { selectChoseProfile, selectProfiles } from "redux/user/userSelector";
 
 const useStyles = makeStyles((theme) => ({
   root: { minHeight: "90vh", padding: "2em 1em" },
@@ -30,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #fff",
     fontSize: "20px",
     borderRadius: "0",
+    minWidth: "200px",
   },
   logo: {
     color: theme.palette.common.red,
@@ -52,24 +51,10 @@ const useStyles = makeStyles((theme) => ({
 const ProfilesList = () => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
+  const choseProfile = useSelector(selectChoseProfile);
   const profiles = useSelector(selectProfiles);
-  const userId = useSelector(selectCurrentUserId);
 
   const router = useRouter();
-
-  const setProfile = async (idx) => {
-    dispatch(setChoseProfile(idx));
-    const myList = await getMyList(userId, idx);
-
-    if (myList !== "error") {
-      dispatch(setMyList(myList));
-      router.push("/browse");
-    } else {
-      alert("There is some error");
-    }
-  };
-
   return (
     <Container maxWidth="xl">
       {/* {selectChoseProfile ? (
@@ -90,7 +75,7 @@ const ProfilesList = () => {
       >
         <Grid item>
           <Typography variant="h1" align="center">
-            Who's watching?
+            Manage Profiles
           </Typography>
         </Grid>
         <Grid item container spacing={2} justify="center" alignItems="center">
@@ -109,7 +94,7 @@ const ProfilesList = () => {
                   src={icon}
                   alt="icon"
                   className={classes.icon}
-                  onClick={() => setProfile(idx)}
+                  onClick={() => router.push(`/manage-profiles/${idx + 1}`)}
                 />
               </Grid>
               <Grid item>
@@ -121,9 +106,15 @@ const ProfilesList = () => {
           ))}
         </Grid>
         <Grid item>
-          <Link href="/manage-profiles">
-            <Button className={classes.btn}>MANAGE PROFILES</Button>
-          </Link>
+          {choseProfile ? (
+            <Link href="/browse">
+              <Button className={classes.btn}>Done</Button>
+            </Link>
+          ) : (
+            <Link href="/profiles">
+              <Button className={classes.btn}>Done</Button>
+            </Link>
+          )}
         </Grid>
       </Grid>
     </Container>

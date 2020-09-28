@@ -13,6 +13,7 @@ const UserActionTypes = {
   SET_EMAIL_FOR_SIGN_UP: "SET_EMAIL_FOR_SIGN_UP",
   SET_CHOSE_PROFILE: "SET_CHOSE_PROFILE",
   SET_MY_LIST: "SET_MY_LIST",
+  SET_PROFILES: "SET_PROFILES",
 };
 
 export default UserActionTypes;

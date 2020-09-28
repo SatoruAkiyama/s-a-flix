@@ -92,3 +92,10 @@ export const setMyList = (myList) => {
     payload: myList,
   };
 };
+
+export const setProfiles = (p) => {
+  return {
+    type: UserActionTypes.SET_PROFILES,
+    payload: p,
+  };
+};

@@ -1,9 +1,9 @@
 import Link from "components/Link";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectCurrentUserProfiles,
   selectChoseProfile,
   selectCurrentUserId,
+  selectProfiles,
 } from "redux/user/userSelector";
 import {
   signOutStart,
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 const PopperCard = ({ content, setOpen }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const profiles = useSelector(selectCurrentUserProfiles);
+  const profiles = useSelector(selectProfiles);
   const choseProfile = useSelector(selectChoseProfile);
   const userId = useSelector(selectCurrentUserId);
 
@@ -88,7 +88,7 @@ const PopperCard = ({ content, setOpen }) => {
   return content === "setting" ? (
     <div className={classes.container}>
       <Grid container direction="column" className={classes.root} spacing={4}>
-        {profiles.map(({ name, icon }, idx) => (
+        {profiles?.map(({ name, icon }, idx) => (
           <Grid
             item
             container
@@ -129,7 +129,7 @@ const PopperCard = ({ content, setOpen }) => {
         ))}
 
         <Grid item>
-          <Link href="/coming-soon">
+          <Link href="/manage-profiles">
             <Typography className={classes.link}>Manage Profiles</Typography>
           </Link>
         </Grid>
