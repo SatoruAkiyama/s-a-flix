@@ -101,10 +101,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icons: {
-    maxWidth: "120px",
+    maxWidth: "80px",
     width: "100%",
     height: "auto",
-    margin: "20px auto",
+    margin: "10px auto",
     cursor: "pointer",
     border: "2px solid #000",
     "&:hover": {
@@ -150,7 +150,7 @@ const ManageProfileForm = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userId, id, name, icon);
-    if (name !== "" || name.length < 16) {
+    if (name !== "" || name.length < 11) {
       await setSending(true);
       const newProfiles = await editProfile(userId, id, name, icon);
       if (newProfiles !== "error") {
@@ -223,11 +223,11 @@ const ManageProfileForm = ({ id }) => {
             value={name && name}
             name="name"
             onChange={handleChange}
-            error={name === "" || name?.length > 15}
+            error={name === "" || name?.length > 10}
             helperText={
               name === ""
                 ? "Name is required!"
-                : "Please keep the name with in 15 characters."
+                : "Please keep the name with in 10 characters."
             }
           />
         </Grid>
