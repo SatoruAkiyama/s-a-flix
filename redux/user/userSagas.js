@@ -16,6 +16,9 @@ import {
   signOutSuccess,
   signUpSuccess,
   signUpFailure,
+  setMyList,
+  setEmailForSignup,
+  setChoseProfile,
 } from "./userActions";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -64,6 +67,9 @@ export function* signOut() {
   try {
     yield auth.signOut();
     yield put(signOutSuccess());
+    yield put(setMyList(null));
+    yield put(setChoseProfile(null));
+    yield put(setEmailForSignup(""));
   } catch (e) {
     yield put(signOutFailure(e.message));
   }

@@ -5,7 +5,9 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 
-import { useRouter } from "next/router";
+import { useContext } from "react";
+import { ModalContext } from "providers/modal.provider";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -37,11 +39,12 @@ export default function MyListCards({ data }) {
   const imageUrl = "https://image.tmdb.org/t/p/w300";
   //   console.log(data);
   const lists = data.reverse();
-  const router = useRouter();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { setInfoContent } = useContext(ModalContext);
 
   return (
     <Container
@@ -62,7 +65,7 @@ export default function MyListCards({ data }) {
               <GridListTile
                 key={name.id}
                 className={classes.list}
-                onClick={() => router.push(`/browse/${name.id}`)}
+                onClick={() => setInfoContent(name)}
               >
                 <img
                   src={

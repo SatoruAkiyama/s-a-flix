@@ -25,14 +25,14 @@ const Layout = ({ children, title, description, ogImage, url, hide }) => {
   const userId = useSelector(selectCurrentUserId);
   const choseProfile = useSelector(selectChoseProfile);
   useEffect(() => {
-    const fecthMyList = async () => {
-      const myList = await getMyList(userId, choseProfile);
-      dispatch(setMyList(myList));
-    };
     if (!user) {
       dispatch(checkUserSession());
     }
     if (user && !myList) {
+      const fecthMyList = async () => {
+        const myList = await getMyList(userId, choseProfile);
+        dispatch(setMyList(myList));
+      };
       fecthMyList();
     }
   }, [dispatch]);
@@ -77,8 +77,9 @@ const Layout = ({ children, title, description, ogImage, url, hide }) => {
       ) : (
         <>
           <Header />
-          <ModalVideo />
-          <ModalInfo />
+          {user && <ModalVideo />}
+          {user && <ModalInfo />}
+
           <main>{children}</main>
           <Footer />
           <Me />
