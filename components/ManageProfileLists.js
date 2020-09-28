@@ -53,7 +53,6 @@ const ProfilesList = () => {
 
   const choseProfile = useSelector(selectChoseProfile);
   const profiles = useSelector(selectProfiles);
-
   const router = useRouter();
   return (
     <Container maxWidth="xl">
@@ -106,12 +105,12 @@ const ProfilesList = () => {
           ))}
         </Grid>
         <Grid item>
-          {choseProfile ? (
-            <Link href="/browse">
+          {choseProfile === null ? (
+            <Link href="/profiles">
               <Button className={classes.btn}>Done</Button>
             </Link>
           ) : (
-            <Link href="/profiles">
+            <Link href="/browse">
               <Button className={classes.btn}>Done</Button>
             </Link>
           )}

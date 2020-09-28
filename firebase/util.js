@@ -180,6 +180,37 @@ export const getProfiles = async (userId) => {
   }
 };
 
+export const editProfile = async (userId, profile, name, icon) => {
+  try {
+    const userRef = await firestore.collection(`users`).doc(`${userId}`);
+    if (profile == 1) {
+      await userRef.update({
+        "user1.name": name,
+        "user1.icon": icon,
+      });
+    } else if (profile == 2) {
+      await userRef.update({
+        "user2.name": name,
+        "user2.icon": icon,
+      });
+    } else if (profile == 3) {
+      await userRef.update({
+        "user3.name": name,
+        "user3.icon": icon,
+      });
+    } else if (profile == 4) {
+      await userRef.update({
+        "user4.name": name,
+        "user4.icon": icon,
+      });
+    }
+    const newData = await getProfiles(userId);
+    return newData;
+  } catch {
+    return "error";
+  }
+};
+
 export const getCuurentUser = () => {
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged((userAuth) => {

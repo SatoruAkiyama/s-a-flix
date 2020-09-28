@@ -12,9 +12,8 @@ export const selectErrorMessage = createSelector(
   (user) => user.errorMessage
 );
 
-export const selectSignUpErrorMessage = createSelector(
-  [selectUser],
-  (user) => user.signUpErrorMessage
+export const selectSignUpErrorMessage = createSelector([selectUser], (user) =>
+  user.signUpErrorMessage ? user.signUpErrorMessage : null
 );
 export const selectCurrentUserId = createSelector(
   [selectCurrentUser],
@@ -22,12 +21,11 @@ export const selectCurrentUserId = createSelector(
 );
 
 export const selectChoseProfile = createSelector([selectUser], (user) =>
-  user ? user.choseProfile : null
+  user.choseProfile ? user.choseProfile : null
 );
 
-export const emailForSignup = createSelector(
-  [selectUser],
-  (user) => user.emailForSignUp
+export const emailForSignup = createSelector([selectUser], (user) =>
+  user.emailForSignUp ? user.emailForSignUp : null
 );
 
 export const selectMyList = createSelector([selectUser], (user) =>
