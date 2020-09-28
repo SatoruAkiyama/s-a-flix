@@ -19,7 +19,7 @@ import {
   selectMyListId,
 } from "redux/user/userSelector";
 import { setMyList } from "redux/user/userActions";
-import { addMyList } from "firebase/util";
+import { addMyList, removeMyList } from "firebase/util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -125,6 +125,18 @@ const PageHeader = ({ data }) => {
     }
   };
 
+  // remove my list
+  const handleRemove = async () => {
+    setSending(true);
+    const myList = await removeMyList(userId, chosePlofile, data);
+    if (myList !== "error") {
+      setSending(false);
+      dispatch(setMyList(myList));
+    } else {
+      alert("There is some error");
+    }
+  };
+
   return (
     <div style={{ marginBottom: matcehsMD ? "80vh" : "85vh" }}>
       <div
@@ -178,9 +190,9 @@ const PageHeader = ({ data }) => {
                     <Button
                       className={classes.already_add__btn}
                       startIcon={<Check />}
-                      // onClick={handleAdd}
+                      onClick={handleRemove}
                     >
-                      Watch
+                      Remove
                     </Button>
                   ) : sending ? (
                     <Button className={classes.add__btn}>

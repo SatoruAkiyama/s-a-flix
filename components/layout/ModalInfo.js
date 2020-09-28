@@ -24,7 +24,7 @@ import {
   selectMyListId,
 } from "redux/user/userSelector";
 import { setMyList } from "redux/user/userActions";
-import { addMyList } from "firebase/util";
+import { addMyList, removeMyList } from "firebase/util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -126,6 +126,18 @@ export default function ModalVideo() {
     }
   };
 
+  // remove
+  const handleRemove = async () => {
+    setSending(true);
+    const myList = await removeMyList(userId, chosePlofile, info);
+    if (myList !== "error") {
+      setSending(false);
+      dispatch(setMyList(myList));
+    } else {
+      alert("There is some error");
+    }
+  };
+
   return (
     <div>
       <Dialog
@@ -190,9 +202,9 @@ export default function ModalVideo() {
                     <Button
                       className={classes.already_add__btn}
                       startIcon={<Check />}
-                      // onClick={handleAdd}
+                      onClick={handleRemove}
                     >
-                      Watch
+                      Remove
                     </Button>
                   ) : sending ? (
                     <Button className={classes.add__btn}>

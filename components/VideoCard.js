@@ -16,7 +16,7 @@ import {
   selectMyListId,
 } from "redux/user/userSelector";
 import { setMyList } from "redux/user/userActions";
-import { addMyList } from "firebase/util";
+import { addMyList, removeMyList } from "firebase/util";
 
 import { ModalContext } from "providers/modal.provider";
 
@@ -119,6 +119,18 @@ const VideoCard = ({ data, poster }) => {
       alert("There is some error");
     }
   };
+
+  // remove my list
+  const handleRemove = async () => {
+    setSending(true);
+    const myList = await removeMyList(userId, chosePlofile, data);
+    if (myList !== "error") {
+      setSending(false);
+      dispatch(setMyList(myList));
+    } else {
+      alert("There is some error");
+    }
+  };
   return (
     <Card className={poster ? classes.poster__root : classes.root}>
       <div
@@ -159,7 +171,7 @@ const VideoCard = ({ data, poster }) => {
               <Check
                 color="secondary"
                 className={classes.already_add__btn}
-                // onClick={handleAdd}
+                onClick={handleRemove}
               />
             ) : sending ? (
               <CircularProgress size={20} color="secondary" />

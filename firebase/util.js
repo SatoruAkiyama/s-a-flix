@@ -118,6 +118,41 @@ export const addMyList = async (userId, idx, data) => {
   }
 };
 
+export const removeMyList = async (userId, idx, data) => {
+  try {
+    const userRef = await firestore.collection(`users`).doc(`${userId}`);
+    if (idx === 0) {
+      await userRef.update({
+        "user1.lists": firebase.firestore.FieldValue.arrayRemove({
+          name: data,
+        }),
+      });
+    } else if (idx === 1) {
+      await userRef.update({
+        "user2.lists": firebase.firestore.FieldValue.arrayRemove({
+          name: data,
+        }),
+      });
+    } else if (idx === 2) {
+      await userRef.update({
+        "user3.lists": firebase.firestore.FieldValue.arrayRemove({
+          name: data,
+        }),
+      });
+    } else if (idx === 3) {
+      await userRef.update({
+        "user4.lists": firebase.firestore.FieldValue.arrayRemove({
+          name: data,
+        }),
+      });
+    }
+    const newData = await getMyList(userId, idx);
+    return newData;
+  } catch {
+    return "error";
+  }
+};
+
 export const getCuurentUser = () => {
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged((userAuth) => {
