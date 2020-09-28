@@ -186,7 +186,7 @@ const PageHeader = ({ data }) => {
                   </Button>
                 </Grid>
                 <Grid item>
-                  {myListId.includes(id) ? (
+                  {myListId?.includes(id) ? (
                     <Button
                       className={classes.already_add__btn}
                       startIcon={<Check />}

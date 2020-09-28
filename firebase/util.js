@@ -61,16 +61,16 @@ export const getMyList = async (userId, idx) => {
   try {
     const userRef = await firestore.collection(`users`).doc(`${userId}`);
     const userDoc = await userRef.get();
-    if (idx === 0) {
+    if (idx === 1) {
       const choseProfileLists = await userDoc.get(`user1`);
       return choseProfileLists.lists;
-    } else if (idx === 1) {
+    } else if (idx === 2) {
       const choseProfileLists = await userDoc.get(`user2`);
       return choseProfileLists.lists;
-    } else if (idx === 2) {
+    } else if (idx === 3) {
       const choseProfileLists = await userDoc.get(`user3`);
       return choseProfileLists.lists;
-    } else if (idx === 3) {
+    } else if (idx === 4) {
       const choseProfileLists = await userDoc.get(`user4`);
       return choseProfileLists.lists;
     }
@@ -82,25 +82,25 @@ export const getMyList = async (userId, idx) => {
 export const addMyList = async (userId, idx, data) => {
   try {
     const userRef = await firestore.collection(`users`).doc(`${userId}`);
-    if (idx === 0) {
+    if (idx === 1) {
       await userRef.update({
         "user1.lists": firebase.firestore.FieldValue.arrayUnion({
           name: data,
         }),
       });
-    } else if (idx === 1) {
+    } else if (idx === 2) {
       await userRef.update({
         "user2.lists": firebase.firestore.FieldValue.arrayUnion({
           name: data,
         }),
       });
-    } else if (idx === 2) {
+    } else if (idx === 3) {
       await userRef.update({
         "user3.lists": firebase.firestore.FieldValue.arrayUnion({
           name: data,
         }),
       });
-    } else if (idx === 3) {
+    } else if (idx === 4) {
       await userRef.update({
         "user4.lists": firebase.firestore.FieldValue.arrayUnion({
           name: data,
@@ -117,25 +117,25 @@ export const addMyList = async (userId, idx, data) => {
 export const removeMyList = async (userId, idx, data) => {
   try {
     const userRef = await firestore.collection(`users`).doc(`${userId}`);
-    if (idx === 0) {
+    if (idx === 1) {
       await userRef.update({
         "user1.lists": firebase.firestore.FieldValue.arrayRemove({
           name: data,
         }),
       });
-    } else if (idx === 1) {
+    } else if (idx === 2) {
       await userRef.update({
         "user2.lists": firebase.firestore.FieldValue.arrayRemove({
           name: data,
         }),
       });
-    } else if (idx === 2) {
+    } else if (idx === 3) {
       await userRef.update({
         "user3.lists": firebase.firestore.FieldValue.arrayRemove({
           name: data,
         }),
       });
-    } else if (idx === 3) {
+    } else if (idx === 4) {
       await userRef.update({
         "user4.lists": firebase.firestore.FieldValue.arrayRemove({
           name: data,

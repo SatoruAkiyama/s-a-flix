@@ -105,7 +105,7 @@ const PopperCard = ({ content, setOpen }) => {
                 alignItems="center"
                 spacing={2}
                 className={classes.profile__lists}
-                onClick={() => setProfile(idx)}
+                onClick={() => setProfile(idx + 1)}
               >
                 <Grid item>
                   <Avatar
@@ -117,7 +117,7 @@ const PopperCard = ({ content, setOpen }) => {
                 <Grid item container direction="column">
                   <Grid item>
                     <Typography
-                      style={{ color: choseProfile === idx && "#fff" }}
+                      style={{ color: choseProfile === idx + 1 && "#fff" }}
                     >
                       {name}
                     </Typography>

@@ -167,7 +167,7 @@ const VideoCard = ({ data, poster }) => {
             />
           </Grid>
           <Grid item>
-            {myListId.includes(id) ? (
+            {myListId?.includes(id) ? (
               <Check
                 color="secondary"
                 className={classes.already_add__btn}

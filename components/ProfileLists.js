@@ -109,7 +109,7 @@ const ProfilesList = () => {
                   src={icon}
                   alt="icon"
                   className={classes.icon}
-                  onClick={() => setProfile(idx)}
+                  onClick={() => setProfile(idx + 1)}
                 />
               </Grid>
               <Grid item>
