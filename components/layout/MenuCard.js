@@ -1,10 +1,8 @@
 import Link from "components/Link";
 import { useRouter } from "next/router";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid } from "@material-ui/core";
-
-import { ROUTES } from "data/ROUTES";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,11 +28,14 @@ const useStyles = makeStyles((theme) => ({
 
 const MenuCard = () => {
   const classes = useStyles();
-  const theme = useTheme();
 
-  const router = useRouter();
-
-  const path = ROUTES;
+  const path = [
+    { name: "Home", link: "/browse" },
+    { name: "TV Shows", link: "/browse/tv" },
+    { name: "Movies", link: "/browse/movies" },
+    { name: "Latest", link: "/browse/latest" },
+    { name: "My List", link: "/browse/my-list" },
+  ];
   return (
     <Grid container direction="column" className={classes.root} spacing={2}>
       {path.map(({ name, link }) => (
