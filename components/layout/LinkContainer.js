@@ -9,8 +9,6 @@ import { Grid, Typography, Popper, Fade, Paper } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import MenuCard from "./MenuCard";
 
-import { ROUTES } from "data/ROUTES";
-
 const useStyles = makeStyles((theme) => ({
   link: {
     fontSize: "1em",
@@ -31,7 +29,13 @@ const LinkContainer = () => {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   const router = useRouter();
-  const path = ROUTES;
+  const path = [
+    { name: "Home", link: "/browse" },
+    { name: "TV Shows", link: "/browse/tv" },
+    { name: "Movies", link: "/browse/movies" },
+    { name: "Latest", link: "/browse/latest" },
+    { name: "My List", link: "/browse/my-list" },
+  ];
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
