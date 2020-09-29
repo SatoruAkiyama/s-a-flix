@@ -21,8 +21,6 @@ import { ICONS } from "data/ICONS";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // marginTop: "40px",
-    // marginBottom: "120px",
     width: "100%",
     maxWidth: "960px",
     margin: "40px auto 120px",

@@ -90,29 +90,6 @@ const Header = () => {
     );
   }
 
-  // if (router.pathname === "/sorry" || router.pathname === "/help") {
-  //   return (
-  //     <Container
-  //       maxWidth="xl"
-  //       style={{
-  //         paddingTop: matchesSM ? "16px" : "20px",
-  //         paddingBottom: matchesSM ? "16px" : "20px",
-  //         position: "absolute",
-  //         top: 0,
-  //         zIndex: 1300,
-  //       }}
-  //     >
-  //       <Grid container alignItems="center">
-  //         <Grid item>
-  //           <Link href="/browse">
-  //             <Typography className={classes.logo}>S-A-FLIX</Typography>
-  //           </Link>
-  //         </Grid>
-  //       </Grid>
-  //     </Container>
-  //   );
-  // }
-
   return (
     <ElevationScroll>
       <AppBar className={classes.appBar}>

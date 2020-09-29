@@ -105,11 +105,7 @@ export default function FormPropsTextFields({ id }) {
           />
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Button
-            // disabled={helperText !== "" || email === ""}
-            className={classes.btn}
-            type="submit"
-          >
+          <Button className={classes.btn} type="submit">
             {" "}
             {sending ? (
               <CircularProgress color="secondary" />

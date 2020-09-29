@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 export default function MyListCards({ data }) {
   const classes = useStyles();
   const imageUrl = "https://image.tmdb.org/t/p/w300";
-  //   console.log(data);
   const lists = data.reverse();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));

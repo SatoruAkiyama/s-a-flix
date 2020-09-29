@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Typography } from "@material-ui/core";
 
 import Social from "components/Social";
+import ShareButton from "components/ShareButton";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -39,6 +40,16 @@ const Me = () => {
             </Grid>
             <Grid item>
               <Social />
+            </Grid>
+          </Grid>
+          <Grid item container direction="column" alignItems="center">
+            <Grid item>
+              <Typography variant="body1" align="center" gutterBottom>
+                If you like S-A-flix, please share.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <ShareButton url="https://s-a-flix.vercel.app/" />
             </Grid>
           </Grid>
         </Grid>
