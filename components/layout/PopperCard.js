@@ -137,7 +137,7 @@ const PopperCard = ({ content, setOpen }) => {
       <div className={classes.divider} />
       <Grid container direction="column" className={classes.root} spacing={2}>
         <Grid item>
-          <Link href="/coming-soon">
+          <Link href="/account">
             <Typography className={classes.link}>Account</Typography>
           </Link>
         </Grid>

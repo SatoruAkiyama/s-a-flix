@@ -39,3 +39,14 @@ export const selectMyListId = createSelector([selectUser], (user) =>
 export const selectProfiles = createSelector([selectUser], (user) =>
   user.profiles ? user.profiles : null
 );
+
+export const selectCurrentUserInfo = createSelector(
+  [selectCurrentUser],
+  (currentUser) =>
+    currentUser
+      ? {
+          email: currentUser.email,
+          createdAt: currentUser.createdAt,
+        }
+      : null
+);

@@ -1,7 +1,7 @@
 export const FOOTER_LISTS = [
   { name: "FAQ", link: "/coming-soon" },
   { name: "Help", link: "/coming-soon" },
-  { name: "Account", link: "/coming-soon" },
+  { name: "Account", link: "/account" },
   { name: "Media Center", link: "/coming-soon" },
 
   { name: "Investor Relations", link: "/coming-soon" },

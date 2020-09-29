@@ -1,5 +1,6 @@
 import { Grid, Typography, Container, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Edit } from "@material-ui/icons";
 
 import Link from "components/Link";
 import { useRouter } from "next/router";
@@ -9,20 +10,7 @@ import { selectChoseProfile, selectProfiles } from "redux/user/userSelector";
 
 const useStyles = makeStyles((theme) => ({
   root: { minHeight: "90vh", padding: "2em 1em" },
-  icon: {
-    height: "auto",
-    width: "90%",
-    margin: "0 auto",
-    maxWidth: "200px",
-    cursor: "pointer",
-    border: "1px solid #000",
-    [theme.breakpoints.down("md")]: {
-      maxWidth: "160px",
-    },
-    "&:hover": {
-      borderColor: "#fff",
-    },
-  },
+
   btn: {
     backgroundColor: "#000",
     border: "2px solid #fff",
@@ -44,6 +32,33 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.25rem",
+    },
+  },
+  edit__icon: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
+  icon__container: {
+    position: "relative",
+    cursor: "pointer",
+    "& img": {
+      height: "auto",
+      width: "100%",
+      margin: "0 auto",
+      maxWidth: "200px",
+      border: "1px solid #000",
+      opacity: 0.5,
+      [theme.breakpoints.down("md")]: {
+        maxWidth: "160px",
+      },
+    },
+    "&:hover": {
+      "& img": {
+        opacity: 1,
+        borderColor: "#fff",
+      },
     },
   },
 }));
@@ -77,7 +92,7 @@ const ProfilesList = () => {
             Manage Profiles
           </Typography>
         </Grid>
-        <Grid item container spacing={2} justify="center" alignItems="center">
+        <Grid item container spacing={3} justify="center" alignItems="center">
           {profiles?.map(({ name, icon }, idx) => (
             <Grid
               item
@@ -88,13 +103,19 @@ const ProfilesList = () => {
               md={3}
               spacing={1}
             >
-              <Grid item container alignItems="center">
-                <img
-                  src={icon}
-                  alt="icon"
-                  className={classes.icon}
+              <Grid item container alignItems="center" justify="center">
+                <Grid
+                  item
+                  className={classes.icon__container}
                   onClick={() => router.push(`/manage-profiles/${idx + 1}`)}
-                />
+                >
+                  <img src={icon} alt="icon" />
+                  <Edit
+                    color="secondary"
+                    className={classes.edit__icon}
+                    fontSize="large"
+                  />
+                </Grid>
               </Grid>
               <Grid item>
                 <Typography variant="body1" align="center">

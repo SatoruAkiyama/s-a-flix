@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export default function FormPropsTextFields({ id }) {
   const classes = useStyles();
   const emailSignup = useSelector(emailForSignup);
-  const [email, setEmail] = useState(emailSignup);
+  const [email, setEmail] = useState(emailSignup ? emailSignup : "");
   const [helperText, setHelper] = useState("");
   const [sending, setSending] = useState(false);
 

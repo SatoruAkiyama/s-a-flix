@@ -40,6 +40,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
       icon: "/user4.png",
       lists: [],
     };
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const createdAt = `${month}/${day}/${year}`;
 
     try {
       await userRef.set({
@@ -48,6 +53,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         user2,
         user3,
         user4,
+        createdAt,
         ...additionalData,
       });
     } catch (error) {
