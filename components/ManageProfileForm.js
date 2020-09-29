@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     borderRadius: "0",
     minWidth: "200px",
+    marginTop: "90px",
   },
   logo: {
     color: theme.palette.common.red,
@@ -245,7 +246,7 @@ const ManageProfileForm = ({ id }) => {
             )}
           </Button>
         </Grid>
-        <Grid item style={{ marginTop: "70px" }}>
+        <Grid item style={{ marginTop: "20px" }}>
           <Link href="/manage-profiles">
             <Button className={classes.btn}>Done</Button>
           </Link>

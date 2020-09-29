@@ -87,7 +87,7 @@ const PopperCard = ({ content, setOpen }) => {
 
   return content === "setting" ? (
     <div className={classes.container}>
-      <Grid container direction="column" className={classes.root} spacing={4}>
+      <Grid container direction="column" className={classes.root} spacing={3}>
         {profiles?.map(({ name, icon }, idx) => (
           <Grid
             item
@@ -142,7 +142,7 @@ const PopperCard = ({ content, setOpen }) => {
           </Link>
         </Grid>
         <Grid item>
-          <Link href="/coming-soon">
+          <Link href="/help">
             <Typography className={classes.link}>Help Center</Typography>
           </Link>
         </Grid>

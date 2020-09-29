@@ -40,7 +40,7 @@ const Layout = ({ children, title, description, ogImage, url, hide }) => {
   // website Url
   const pageUrl = "https://s-a-flix.vercel.app/";
   // when you share this page on facebook you'll see this image
-  const ogImg = "https://i.imgur.com/1H2TK2B.png";
+  const ogImg = "/s-a-flix1-min.png";
 
   return (
     <>
