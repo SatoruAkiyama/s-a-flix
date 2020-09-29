@@ -8,7 +8,7 @@ const VideoSlider = ({ data, title, poster }) => {
   ));
   return (
     <Container maxWidth="xl" style={{ marginBottom: "90px" }}>
-      <Typography variant="h2" style={{ marginBottom: "1em" }}>
+      <Typography variant="h2" style={{ marginBottom: "20px" }}>
         {title}
       </Typography>
 

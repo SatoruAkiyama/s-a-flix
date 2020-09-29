@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { Grid, TextField, Popper, Fade, Paper } from "@material-ui/core";
+import {
+  Grid,
+  TextField,
+  Popper,
+  Fade,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import {
   Notifications,
   CardGiftcard,
@@ -10,6 +17,7 @@ import {
 } from "@material-ui/icons";
 
 import PopperCard from "./PopperCard";
+import Link from "components/Link";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -69,6 +77,11 @@ const useStyles = makeStyles((theme) => ({
   },
   setting__paper: {
     marginRight: "10px",
+  },
+  kids: {
+    "& a": {
+      color: "#fff !important",
+    },
   },
 }));
 
@@ -170,7 +183,9 @@ const OptionsContainer = () => {
         </Grid>
         {!matchesXS && (
           <Grid item style={{ padding: "6px 8px 10px" }}>
-            KIDS
+            <Typography variant="body2" className={classes.kids}>
+              <Link href="/browse/kids">KIDS</Link>
+            </Typography>
           </Grid>
         )}
         {!matchesXS && (

@@ -21,8 +21,11 @@ import { ICONS } from "data/ICONS";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: "40px",
-    marginBottom: "120px",
+    // marginTop: "40px",
+    // marginBottom: "120px",
+    width: "100%",
+    maxWidth: "960px",
+    margin: "40px auto 120px",
     "& .MuiFilledInput-root": {
       backgroundColor: theme.palette.secondary.main,
       borderRadius: 0,
@@ -93,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "200px",
     width: "100%",
     height: "auto",
-    margin: "20px auto",
+    margin: "0 auto 20px",
   },
   back: {
     "& a": {
@@ -101,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icons: {
-    maxWidth: "80px",
+    maxWidth: "70px",
     width: "100%",
     height: "auto",
     margin: "10px auto",
@@ -234,11 +237,11 @@ const ManageProfileForm = ({ id }) => {
         <Grid item>
           <Button className={classes.edit__btn} onClick={handleSubmit}>
             {errorMessage ? (
-              <>Edit</>
+              <>Save</>
             ) : sending ? (
               <CircularProgress color="secondary" />
             ) : (
-              <>Edit</>
+              <>Save</>
             )}
           </Button>
         </Grid>

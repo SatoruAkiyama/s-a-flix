@@ -7,8 +7,8 @@ import { selectCurrentUser } from "redux/user/userSelector";
 import { getLatestMovies, getLatestTv } from "lib/api";
 
 export async function getStaticProps() {
-  const latestMovies = await getLatestMovies(28);
-  const latestTv = await getLatestTv(12);
+  const latestMovies = await getLatestMovies();
+  const latestTv = await getLatestTv();
   return {
     revalidate: 1,
     props: {
