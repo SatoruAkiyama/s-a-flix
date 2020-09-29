@@ -20,7 +20,6 @@ export async function getStaticProps() {
 
 const Home = ({ popularMovies, populartTv }) => {
   const user = useSelector(selectCurrentUser);
-  console.log(popularMovies);
   if (!user) {
     return <Redirect to="/" />;
   }

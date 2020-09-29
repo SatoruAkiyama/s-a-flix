@@ -14,6 +14,8 @@ import {
   getOriginals,
   getComedies,
   getDocumentaries,
+  getMovieByGenre,
+  getTvByGenre,
 } from "lib/api";
 
 export async function getStaticProps() {
@@ -24,7 +26,9 @@ export async function getStaticProps() {
   const popularTv = await getPopularTv();
   const originals = await getOriginals();
   const comedies = await getComedies();
+  const romance = await getMovieByGenre(10749);
   const documentaries = await getDocumentaries();
+  const reality = await getTvByGenre(10764);
 
   return {
     revalidate: 1,
@@ -36,7 +40,9 @@ export async function getStaticProps() {
       popularTv,
       originals,
       comedies,
+      romance,
       documentaries,
+      reality,
     },
   };
 }
@@ -49,6 +55,8 @@ const Home = ({
   originals,
   comedies,
   documentaries,
+  romance,
+  reality,
 }) => {
   const user = useSelector(selectCurrentUser);
   if (!user) {
@@ -71,6 +79,8 @@ const Home = ({
       )}
       {popularTv && <VideoSlider data={popularTv} title="Popular TV Shows" />}
       {originals && <VideoSlider data={originals} title="Originals" poster />}
+      {romance && <VideoSlider data={romance} title="Romantic Movies" />}
+      {reality && <VideoSlider data={reality} title="Reality TV Shows" />}
       {comedies && <VideoSlider data={comedies} title="Comedies" />}
       {documentaries && (
         <VideoSlider data={documentaries} title="Documentaries" />
