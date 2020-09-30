@@ -1,6 +1,7 @@
 import { Container, Grid, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ReactPlayer from "react-player";
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     borderBottom: `8px solid #222`,
@@ -25,7 +26,7 @@ const OurStoryCard = ({ data: { title, text, src, reverse } }) => {
           alignItems="center"
           direction={matchesSM ? "column" : reverse ? "row-reverse" : "row"}
           md
-          spacing={4}
+          spacing={1}
         >
           <Grid item sm={6}>
             <Typography
@@ -39,8 +40,19 @@ const OurStoryCard = ({ data: { title, text, src, reverse } }) => {
               {text}
             </Typography>
           </Grid>
-          <Grid item sm={5}>
-            <img className={classes.src} src={src} alt="image" />
+          <Grid item sm={6}>
+            <ReactPlayer
+              url={src}
+              playing
+              playsinline
+              loop
+              config={{
+                options: {
+                  allowfullscreen: false,
+                },
+              }}
+              width="100%"
+            />
           </Grid>
         </Grid>
       </Container>
