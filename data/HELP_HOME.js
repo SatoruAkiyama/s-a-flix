@@ -8,7 +8,7 @@ export const LINK_LISTS = [
   {
     title: "Getting Started",
     links: [
-      { text: "What is Netflix?", path: "/help" },
+      { text: "What is Netflix?", path: "/help/faq" },
       { text: "How to pay for Netflix", path: "/help" },
       { text: "How do I download the Netflix app?", path: "/help" },
     ],

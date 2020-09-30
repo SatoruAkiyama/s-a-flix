@@ -85,9 +85,6 @@ const useStyles = makeStyles((theme) => ({
       borderColor: theme.palette.common.red,
     },
   },
-  arrow: {
-    color: theme.palette.common.red,
-  },
 }));
 
 const HelpHome = () => {
@@ -95,7 +92,6 @@ const HelpHome = () => {
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
   const popularTopics = POPULAR_TOPICS;
   const linkLists = LINK_LISTS;

@@ -85,7 +85,7 @@ const Header = () => {
     );
   }
 
-  if (router.pathname === "/sorry" || router.pathname === "/help") {
+  if (router.pathname === "/sorry" || router.pathname.includes("/help")) {
     return (
       <Container
         maxWidth="xl"

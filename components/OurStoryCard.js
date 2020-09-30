@@ -26,9 +26,9 @@ const OurStoryCard = ({ data: { title, text, src, reverse } }) => {
           alignItems="center"
           direction={matchesSM ? "column" : reverse ? "row-reverse" : "row"}
           md
-          spacing={1}
+          spacing={3}
         >
-          <Grid item sm={6}>
+          <Grid item sm={10} md={6}>
             <Typography
               variant="h1"
               gutterBottom
@@ -40,7 +40,7 @@ const OurStoryCard = ({ data: { title, text, src, reverse } }) => {
               {text}
             </Typography>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={10} md={6}>
             <ReactPlayer
               url={src}
               playing

@@ -1,5 +1,5 @@
 export const FOOTER_LISTS = [
-  { name: "FAQ", link: "/sorry" },
+  { name: "FAQ", link: "/help/faq" },
   { name: "Help Center", link: "/help" },
   { name: "Account", link: "/account" },
   { name: "Media Center", link: "/sorry" },
