@@ -3,11 +3,12 @@ import { makeStyles } from "@material-ui/core";
 
 import Layout from "components/layout/Layout";
 import Link from "components/Link";
+import ContactBlock from "components/help/ContactBlock";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& h2, h3, p": {
-      color: "#000",
+      color: "#221f1f",
     },
     "& h2": {
       fontWeight: "bold",
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     },
     "& p": {
       fontSize: "18px",
-      color: "#221f1f",
     },
     backgroundColor: "#fff",
     marginTop: "90px",
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HelpHome = () => {
+const FaqPage = () => {
   const classes = useStyles();
 
   return (
@@ -102,7 +102,7 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2">
                       Netflix is a subscription-based{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         streaming service
                       </Link>{" "}
                       that allows our members to watch TV shows and movies
@@ -112,7 +112,7 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2">
                       You can also{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         download TV shows and movies
                       </Link>{" "}
                       to your iOS, Android, or Windows 10 device and watch
@@ -123,7 +123,7 @@ const HelpHome = () => {
                     <Typography variant="body2">
                       If you're already a member and would like to learn more
                       about using Netflix, visit{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         Getting started with Netflix
                       </Link>
                       .
@@ -149,7 +149,7 @@ const HelpHome = () => {
                     <Typography variant="body2">
                       Netflix content varies by region and may change over time.
                       You can watch from a wide variety of{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         award-winning Netflix Originals, TV shows, movies,
                         documentaries, and more
                       </Link>
@@ -159,7 +159,7 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2">
                       The more you watch, the better Netflix gets at{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         recommending
                       </Link>{" "}
                       TV shows and movies we think you’ll enjoy.
@@ -168,7 +168,7 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2">
                       Before you sign up, you can{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         watch some of the content
                       </Link>{" "}
                       Netflix has to offer!
@@ -193,7 +193,7 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2">
                       You can watch Netflix through any{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         internet-connected{" "}
                       </Link>
@@ -202,12 +202,12 @@ const HelpHome = () => {
                       smartphones, and tablets. You can also watch Netflix on
                       your computer using an internet browser. You can review
                       the{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         system requirements{" "}
                       </Link>{" "}
                       for web browser compatibility, and check our{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         internet speed recommendations{" "}
                       </Link>{" "}
@@ -217,7 +217,7 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2">
                       Need help getting set up? Search our{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         Help Center{" "}
                       </Link>{" "}
@@ -259,15 +259,15 @@ const HelpHome = () => {
                   </Grid>
                   <Grid item>
                     <Typography variant="body2">
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         Compare our plans and pricing{" "}
                       </Link>{" "}
                       to decide which one is right for you. You can easily{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         change your plan{" "}
                       </Link>{" "}
                       or{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         cancel{" "}
                       </Link>{" "}
@@ -289,14 +289,14 @@ const HelpHome = () => {
                   <Grid item>
                     <Typography variant="body2" style={{ lineHeight: 1.7 }}>
                       1. Visit{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         netflix.com/signup
                       </Link>
                       .
                       <br />
                       2.{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         Choose the plan{" "}
                       </Link>{" "}
@@ -305,7 +305,7 @@ const HelpHome = () => {
                       3. Create an account by entering your email address and
                       creating a password. <br />
                       4. Enter a{" "}
-                      <Link href="/help/faq" className={classes.link__text}>
+                      <Link href="#" className={classes.link__text}>
                         {" "}
                         payment method{" "}
                       </Link>
@@ -325,37 +325,57 @@ const HelpHome = () => {
               item
               container
               direction="column"
-              spacing={3}
+              spacing={4}
               className={classes.suggest__container}
               md={4}
             >
               <Grid item>
                 <Typography variant="h3">Suggested Articles</Typography>
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginLeft: "24px" }}>
                 <Typography>
-                  ・<Link href="/help/faq">Getting started with Netflix</Link>
+                  <Link href="#">
+                    <span style={{ display: "list-item" }}>
+                      Getting started with Netflix
+                    </span>
+                  </Link>
                 </Typography>
                 <Typography>
-                  ・<Link href="/help/faq">Billing and Payments</Link>
+                  <Link href="#">
+                    <span style={{ display: "list-item" }}>
+                      Billing and Payments
+                    </span>
+                  </Link>
                 </Typography>
                 <Typography>
-                  ・<Link href="/help/faq">Netflix Gift Cards</Link>
+                  <Link href="#">
+                    <span style={{ display: "list-item" }}>
+                      Netflix Gift Cards
+                    </span>
+                  </Link>
                 </Typography>
                 <Typography>
-                  ・<Link href="/help/faq">I can't sign in to Netflix</Link>
+                  <Link href="#">
+                    <span style={{ display: "list-item" }}>
+                      I can't sign in to Netflix
+                    </span>
+                  </Link>
                 </Typography>
                 <Typography>
-                  ・
-                  <Link href="/help/faq">How to create and edit profiles</Link>
+                  <Link href="#">
+                    <span style={{ display: "list-item" }}>
+                      How to create and edit profiles
+                    </span>
+                  </Link>
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
         </Container>
       </div>
+      <ContactBlock />
     </Layout>
   );
 };
 
-export default HelpHome;
+export default FaqPage;

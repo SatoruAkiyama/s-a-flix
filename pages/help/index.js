@@ -5,13 +5,14 @@ import { Subject } from "@material-ui/icons";
 
 import Layout from "components/layout/Layout";
 import Link from "components/Link";
+import ContactBlock from "components/help/ContactBlock";
 
 import { POPULAR_TOPICS, LINK_LISTS, QUICK_LINKS } from "data/HELP_HOME";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& h2, h3, p": {
-      color: "#000",
+      color: "#221f1f",
     },
     "& h2": {
       fontWeight: "bold",
@@ -221,6 +222,7 @@ const HelpHome = () => {
             </Grid>
           </Container>
         </div>
+        <ContactBlock />
       </div>
     </Layout>
   );
