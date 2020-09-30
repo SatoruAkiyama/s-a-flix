@@ -27,7 +27,7 @@ export default function ModalVideo() {
         fullScreen={matchesXS}
         PaperProps={{
           style: {
-            padding: matchesXS ? "150px 0" : 0,
+            padding: 0,
             backgroundColor: "#000",
             height: matchesXS ? "100vh" : "75vh",
             border: matchesXS ? "none" : "1px solid #fff",
@@ -36,7 +36,16 @@ export default function ModalVideo() {
         fullWidth
         maxWidth="md"
       >
-        <DialogContent>
+        <DialogContent
+          style={{
+            textAlign: matchesXS && "center",
+            position: matchesXS && "absolute",
+            top: matchesXS && "45%",
+            left: matchesXS && "50%",
+            transform: matchesXS && "translate(-50%,-45%)",
+            width: matchesXS && "100%",
+          }}
+        >
           <DialogActions style={{ padding: "0 0 15px" }}>
             <Button onClick={closeMovieModal}>Close</Button>
           </DialogActions>
@@ -55,30 +64,17 @@ export default function ModalVideo() {
             >
               Sorry, there is no video.
             </DialogContentText>
-          ) : matchesXS ? (
-            <ReactPlayer
-              url={video}
-              playing
-              controls
-              // config={{
-              //   youtube: {
-              //     playerVars: { showinfo: 1 },
-              //   },
-              // }}
-              width="100%"
-              height="90%"
-            />
           ) : (
             <ReactPlayer
               url={video}
               playing
               playsinline
               controls
-              // config={{
-              //   youtube: {
-              //     playerVars: { showinfo: 1 },
-              //   },
-              // }}
+              config={{
+                youtube: {
+                  playerVars: { showinfo: 1 },
+                },
+              }}
               width="100%"
               height="90%"
             />
