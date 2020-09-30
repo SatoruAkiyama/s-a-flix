@@ -38,7 +38,7 @@ const Layout = ({ children, title, description, ogImage, url, hide }) => {
   }, [dispatch]);
 
   const pageUrl = "https://s-a-flix.vercel.app/";
-  const ogImg = "/s-a-flix1-min.png";
+  const ogImg = "https://i.imgur.com/2034yaU.png";
 
   return (
     <>

@@ -149,7 +149,7 @@ export default function ModalVideo() {
             padding: 0,
             backgroundColor: "#000",
             height: matchesXS ? "100vh" : "75vh",
-            border: "1px solid #fff",
+            border: matchesXS ? "none" : "1px solid #fff",
           },
         }}
         fullWidth

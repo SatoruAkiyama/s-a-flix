@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 import { ModalContext } from "providers/modal.provider";
 
 import { useTheme } from "@material-ui/core/styles";
@@ -27,10 +27,10 @@ export default function ModalVideo() {
         fullScreen={matchesXS}
         PaperProps={{
           style: {
-            padding: 0,
+            padding: matchesXS ? "150px 0" : 0,
             backgroundColor: "#000",
             height: matchesXS ? "100vh" : "75vh",
-            border: "1px solid #fff",
+            border: matchesXS ? "none" : "1px solid #fff",
           },
         }}
         fullWidth
@@ -55,17 +55,30 @@ export default function ModalVideo() {
             >
               Sorry, there is no video.
             </DialogContentText>
+          ) : matchesXS ? (
+            <ReactPlayer
+              url={video}
+              playing
+              controls
+              // config={{
+              //   youtube: {
+              //     playerVars: { showinfo: 1 },
+              //   },
+              // }}
+              width="100%"
+              height="90%"
+            />
           ) : (
             <ReactPlayer
               url={video}
               playing
               playsinline
               controls
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1 },
-                },
-              }}
+              // config={{
+              //   youtube: {
+              //     playerVars: { showinfo: 1 },
+              //   },
+              // }}
               width="100%"
               height="90%"
             />
