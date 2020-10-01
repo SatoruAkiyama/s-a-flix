@@ -68,12 +68,9 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiBox-root-259": {
       padding: "0",
     },
-    "& .PrivateTabIndicator-root-15": {
+    "& .MuiTabs-indicator": {
       backgroundColor: theme.palette.common.red,
-      height: "4px",
-    },
-    "& .PrivateTabIndicator-colorPrimary-16": {
-      backgroundColor: theme.palette.common.red,
+      height: "8px",
     },
   },
   tabContainer: {
