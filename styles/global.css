@@ -9,6 +9,10 @@
   width: 100%;
   height: 100%;
 }
+.slick-prev:before,
+.slick-next:before {
+  color: #e50914;
+}
 
 @media (min-width: 600px) {
   .slick-list {
