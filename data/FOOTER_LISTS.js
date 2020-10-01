@@ -2,7 +2,7 @@ export const FOOTER_LISTS = [
   { name: "FAQ", link: "/help/faq" },
   { name: "Help Center", link: "/help" },
   { name: "Account", link: "/account" },
-  { name: "Media Center", link: "/sorry" },
+  { name: "Media Center", link: "/media-center" },
 
   { name: "Investor Relations", link: "/sorry" },
   { name: "Jobs", link: "/sorry" },
@@ -17,7 +17,7 @@ export const FOOTER_LISTS = [
   { name: "Corporate Information", link: "/help/corporate-information" },
   { name: "Contact Us", link: "/help/contactus" },
   { name: "Act on Specified Commercial Transactions", link: "/help/support" },
-  { name: "Speed Test", link: "/sorry" },
+  { name: "Speed Test", link: "https://fast.com/ja/", external: true },
 
   { name: "Legal Notices", link: "/help/legal-notices" },
   { name: "Netflix Originals", link: "/sorry" },

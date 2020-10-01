@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   link_text: {
     color: "#757575 !important",
     fontSize: "16px",
+    textDecoration: "none",
     "&:hover": {
       color: `${theme.palette.secondary.main} !important`,
     },
@@ -37,12 +38,23 @@ const Footer = () => {
           Questions? Call 0120-996-012
         </Typography>
         <Grid container className={classes.link__container} spacing={4}>
-          {lists.map(({ name, link }, idx) => (
+          {lists.map(({ name, link, external }, idx) => (
             <Grid item xs={6} sm={4} md={3} key={idx}>
               <Typography style={{ lineHeight: 1 }}>
-                <Link href={link} className={classes.link_text}>
-                  {name}
-                </Link>
+                {external ? (
+                  <a
+                    href={link}
+                    className={classes.link_text}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {name}
+                  </a>
+                ) : (
+                  <Link href={link} className={classes.link_text}>
+                    {name}
+                  </Link>
+                )}
               </Typography>
             </Grid>
           ))}

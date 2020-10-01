@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "none",
     },
   },
+  media__appBar: {
+    background: theme.palette.secondary.main,
+  },
   logo: {
     color: theme.palette.common.red,
     width: "max-content",
@@ -51,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
   signIn: {
     fontSize: "1em",
+  },
+  media: {
+    fontSize: "1em",
+    color: "#000",
   },
 }));
 
@@ -105,6 +112,42 @@ const Header = () => {
           </Grid>
         </Grid>
       </Container>
+    );
+  }
+
+  if (router.pathname === "/media-center") {
+    return (
+      <ElevationScroll>
+        <AppBar className={classes.media__appBar}>
+          <Toolbar disableGutters>
+            <Container
+              maxWidth="xl"
+              style={{
+                paddingTop: matchesSM ? "16px" : "20px",
+                paddingBottom: matchesSM ? "16px" : "20px",
+              }}
+            >
+              <Grid container alignItems="center">
+                <Grid item>
+                  <Link href="/browse">
+                    <Typography className={classes.logo}>S-A-FLIX</Typography>
+                  </Link>
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    marginLeft: matchesSM ? "6px" : matchesMD ? "20px" : "40px",
+                  }}
+                >
+                  <Typography className={classes.media}>
+                    MEDIA CENTER
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Container>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
     );
   }
 
