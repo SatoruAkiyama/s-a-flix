@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
   media__appBar: {
     background: theme.palette.secondary.main,
   },
+  devices__appBar: {
+    background: theme.palette.secondary.main,
+  },
   jobs__appBar: {
     background: "transparent",
     "& .MuiTypography-body2": {
@@ -196,6 +199,32 @@ const Header = () => {
                   }}
                 >
                   <Typography variant="body2">Jobs</Typography>
+                </Grid>
+              </Grid>
+            </Container>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+    );
+  }
+
+  if (router.pathname === "/devices") {
+    return (
+      <ElevationScroll>
+        <AppBar className={classes.devices__appBar}>
+          <Toolbar disableGutters>
+            <Container
+              maxWidth="xl"
+              style={{
+                paddingTop: matchesSM ? "16px" : "20px",
+                paddingBottom: matchesSM ? "16px" : "20px",
+              }}
+            >
+              <Grid container justify="space-between" alignItems="center">
+                <Grid item>
+                  <Link href="/browse">
+                    <Typography className={classes.logo}>S-A-FLIX</Typography>
+                  </Link>
                 </Grid>
               </Grid>
             </Container>

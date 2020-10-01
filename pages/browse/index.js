@@ -78,7 +78,9 @@ const Home = ({
         <VideoSlider data={popularMovies} title="Popular Movies" />
       )}
       {popularTv && <VideoSlider data={popularTv} title="Popular TV Shows" />}
-      {originals && <VideoSlider data={originals} title="Originals" poster />}
+      {originals && (
+        <VideoSlider data={originals} title="Originals" poster id="originals" />
+      )}
       {romance && <VideoSlider data={romance} title="Romantic Movies" />}
       {reality && <VideoSlider data={reality} title="Reality TV Shows" />}
       {comedies && <VideoSlider data={comedies} title="Comedies" />}

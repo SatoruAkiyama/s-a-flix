@@ -6,10 +6,10 @@ export const FOOTER_LISTS = [
 
   { name: "Investor Relations", link: "/investor-relations" },
   { name: "Jobs", link: "/jobs" },
-  { name: "Redeem Gift Cards", link: "/sorry" },
-  { name: "Buy Gift Cards", link: "/sorry" },
+  // { name: "Redeem Gift Cards", link: "/sorry" },
+  // { name: "Buy Gift Cards", link: "/sorry" },
 
-  { name: "Ways to Watch", link: "/sorry" },
+  { name: "Ways to Watch", link: "/devices" },
   { name: "Terms of Use", link: "/help/termsofuse" },
   { name: "Privacy", link: "/help/privacy" },
   { name: "Cookie Preferences", link: "/help/privacy#cookies" },
@@ -20,5 +20,5 @@ export const FOOTER_LISTS = [
   { name: "Speed Test", link: "https://fast.com/ja/", external: true },
 
   { name: "Legal Notices", link: "/help/legal-notices" },
-  { name: "Netflix Originals", link: "/sorry" },
+  { name: "Netflix Originals", link: "/browse#originals" },
 ];
