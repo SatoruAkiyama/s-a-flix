@@ -62,14 +62,18 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiTab-textColorPrimary.Mui-selected": {
       color: theme.palette.common.red,
     },
-    "& .PrivateTabIndicator-colorPrimary-136": {
-      backgroundColor: theme.palette.common.red,
-    },
     "& svg": {
       fontSize: "60px",
     },
     "& .MuiBox-root-259": {
       padding: "0",
+    },
+    "& .PrivateTabIndicator-root-15": {
+      backgroundColor: theme.palette.common.red,
+      height: "4px",
+    },
+    "& .PrivateTabIndicator-colorPrimary-16": {
+      backgroundColor: theme.palette.common.red,
     },
   },
   tabContainer: {
@@ -90,11 +94,11 @@ const useStyles = makeStyles((theme) => ({
       borderLeft: `2px solid ${theme.palette.common.red}`,
       paddingLeft: "10px",
       marginBottom: "40px",
-      color: "#fff",
-      fontSize: "1.75rem",
+      color: "#fff !important",
+      fontSize: "1.75rem !important",
     },
     "& p": {
-      color: "#fff",
+      color: "#fff !important",
     },
   },
 }));
