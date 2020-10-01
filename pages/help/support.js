@@ -63,7 +63,7 @@ const SupportPage = () => {
 
   return (
     <Layout
-      title="Information Provided Pursuant to the Act on Specified Commercial Transactions - Help Center | S-A-FLIX"
+      title="Information Provided Pursuant to the Act on Specified Commercial Transactions - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

@@ -93,7 +93,7 @@ const ContactUs = () => {
 
   return (
     <Layout
-      title="Contact Us - Help Center | S-A-FLIX"
+      title="Contact Us - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

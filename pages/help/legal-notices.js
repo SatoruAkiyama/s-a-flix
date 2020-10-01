@@ -48,7 +48,7 @@ const LegalNoticesPage = () => {
 
   return (
     <Layout
-      title="Legal Notices - Help Center | S-A-FLIX"
+      title="Legal Notices - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

@@ -70,7 +70,7 @@ const FaqPage = () => {
 
   return (
     <Layout
-      title="FAQ - Help Center | S-A-FLIX"
+      title="FAQ - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

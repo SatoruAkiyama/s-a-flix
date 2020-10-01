@@ -48,7 +48,7 @@ const PrivacyPage = () => {
 
   return (
     <Layout
-      title="Privacy - Help Center | S-A-FLIX"
+      title="Privacy - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

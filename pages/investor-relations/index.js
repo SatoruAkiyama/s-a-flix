@@ -191,7 +191,7 @@ const InvestorRelations = () => {
 
   return (
     <Layout
-      title="Investor Relations | S-A-FLIX"
+      title="Investor Relations | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

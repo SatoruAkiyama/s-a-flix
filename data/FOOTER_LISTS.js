@@ -5,7 +5,7 @@ export const FOOTER_LISTS = [
   { name: "Media Center", link: "/media-center" },
 
   { name: "Investor Relations", link: "/investor-relations" },
-  { name: "Jobs", link: "/sorry" },
+  { name: "Jobs", link: "/jobs" },
   { name: "Redeem Gift Cards", link: "/sorry" },
   { name: "Buy Gift Cards", link: "/sorry" },
 

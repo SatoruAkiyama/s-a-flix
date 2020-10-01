@@ -70,7 +70,7 @@ const CorporateInformationPage = () => {
 
   return (
     <Layout
-      title="Corporate Information - Help Center | S-A-FLIX"
+      title="Corporate Information - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

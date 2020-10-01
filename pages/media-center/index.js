@@ -238,7 +238,7 @@ const MediaCenter = () => {
 
   return (
     <Layout
-      title="Media Center | S-A-FLIX"
+      title="Media Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

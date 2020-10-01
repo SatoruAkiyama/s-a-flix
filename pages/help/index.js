@@ -99,7 +99,7 @@ const HelpHome = () => {
   const quiclLinks = QUICK_LINKS;
   return (
     <Layout
-      title="Help Center | S-A-FLIX"
+      title="Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

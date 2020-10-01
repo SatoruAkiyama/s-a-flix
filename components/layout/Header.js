@@ -40,6 +40,19 @@ const useStyles = makeStyles((theme) => ({
   media__appBar: {
     background: theme.palette.secondary.main,
   },
+  jobs__appBar: {
+    background: "transparent",
+    "& .MuiTypography-body2": {
+      fontSize: "1em",
+      color: "#fff",
+    },
+    "&.MuiPaper-elevation4": {
+      background: theme.palette.secondary.main,
+      "& .MuiTypography-body2": {
+        color: "#000",
+      },
+    },
+  },
   logo: {
     color: theme.palette.common.red,
     width: "max-content",
@@ -149,6 +162,40 @@ const Header = () => {
                       <>MEDIA CENTER</>
                     )}
                   </Typography>
+                </Grid>
+              </Grid>
+            </Container>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+    );
+  }
+
+  if (router.pathname === "/jobs") {
+    return (
+      <ElevationScroll>
+        <AppBar className={classes.jobs__appBar}>
+          <Toolbar disableGutters>
+            <Container
+              maxWidth="xl"
+              style={{
+                paddingTop: matchesSM ? "16px" : "20px",
+                paddingBottom: matchesSM ? "16px" : "20px",
+              }}
+            >
+              <Grid container alignItems="center">
+                <Grid item>
+                  <Link href="/browse">
+                    <Typography className={classes.logo}>S-A-FLIX</Typography>
+                  </Link>
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    marginLeft: matchesSM ? "6px" : matchesMD ? "20px" : "40px",
+                  }}
+                >
+                  <Typography variant="body2">Jobs</Typography>
                 </Grid>
               </Grid>
             </Container>

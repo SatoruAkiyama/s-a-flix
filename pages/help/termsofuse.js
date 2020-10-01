@@ -48,7 +48,7 @@ const TermsOfUsePage = () => {
 
   return (
     <Layout
-      title="Terms of Use - Help Center | S-A-FLIX"
+      title="Terms of Use - Help Center | S-A-FLIX | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>
