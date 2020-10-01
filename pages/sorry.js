@@ -3,7 +3,10 @@ import Layout from "components/layout/Layout";
 
 const Soory = () => {
   return (
-    <Layout title="S-A-FLIX" description="This is a Netflix Clone Application.">
+    <Layout
+      title="Sorry | S-A-flix | Netflix Clone"
+      description="This is a Netflix Clone Application."
+    >
       <Container maxWidth="md">
         <Typography variant="h1" align="center" style={{ margin: "3em 0 2em" }}>
           Sorry, I have not built this page yet.

@@ -11,7 +11,10 @@ const ManageProfiles = () => {
     return <Redirect to="/login" />;
   }
   return (
-    <Layout title="S-A-FLIX" description="This is a Netflix Clone Application.">
+    <Layout
+      title="Account | S-A-FLIX"
+      description="This is a Netflix Clone Application."
+    >
       <AccountInfo />
     </Layout>
   );

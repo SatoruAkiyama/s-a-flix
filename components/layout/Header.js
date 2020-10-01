@@ -115,7 +115,10 @@ const Header = () => {
     );
   }
 
-  if (router.pathname === "/media-center") {
+  if (
+    router.pathname === "/media-center" ||
+    router.pathname === "/investor-relations"
+  ) {
     return (
       <ElevationScroll>
         <AppBar className={classes.media__appBar}>
@@ -140,7 +143,11 @@ const Header = () => {
                   }}
                 >
                   <Typography className={classes.media}>
-                    MEDIA CENTER
+                    {router.pathname === "/investor-relations" ? (
+                      <>INVESTORS</>
+                    ) : (
+                      <>MEDIA CENTER</>
+                    )}
                   </Typography>
                 </Grid>
               </Grid>

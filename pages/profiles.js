@@ -12,7 +12,7 @@ const Profiles = () => {
   }
   return (
     <Layout
-      title="S-A-FLIX"
+      title="Profiles | S-A-flix | Netflix Clone"
       description="This is a Netflix Clone Application."
       hide
     >

@@ -31,28 +31,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "0 0 70px",
     },
   },
-  btn: {
-    background: "#fff",
-    margin: "0 10px",
-    borderRadius: 0,
-    border: "1px solid #8b8a88",
-    padding: "16px !important",
-    "&.MuiButton-root .MuiButton-label": {
-      borderColor: "#8b8a88",
-      color: "#4c4948 !important",
-      fontSize: "16px",
-      fontWeight: 700,
-    },
-    "&:hover": {
-      "&.MuiButton-root:hover": {
-        backgroundColor: `#f5f5f1 !important`,
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-      margin: "10px 0",
-    },
-  },
+
   block: {
     background: "#221f1f",
     position: "absolute",
@@ -259,7 +238,7 @@ const MediaCenter = () => {
 
   return (
     <Layout
-      title="Media Center - Help Center | S-A-FLIX"
+      title="Media Center | S-A-FLIX"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

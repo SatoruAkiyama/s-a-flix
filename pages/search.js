@@ -32,7 +32,7 @@ const SearchPage = () => {
   }
   return (
     <Layout
-      title="Search | S-A-FLIX"
+      title="Search | S-A-flix | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <Container maxWidth="xl" style={{ margin: "120px 0 10px" }}>

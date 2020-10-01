@@ -158,7 +158,7 @@ const SignUp = () => {
 
   return (
     <Layout
-      title="S-A-flix | Netflix Clone"
+      title="Sign up | S-A-flix | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>

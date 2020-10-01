@@ -174,7 +174,7 @@ const Login = () => {
 
   return (
     <Layout
-      title="S-A-flix | Netflix Clone"
+      title="Login | S-A-flix | Netflix Clone"
       description="This is a Netflix Clone Application."
     >
       <div className={classes.root}>
