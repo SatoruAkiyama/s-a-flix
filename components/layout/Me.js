@@ -18,7 +18,7 @@ const Me = () => {
         <Grid item container direction="column" justify="center" spacing={4}>
           <Grid item>
             <Typography variant="body1" align="center">
-              Hello, my name is Satoru Akiyama. I am a creative develoer. This
+              Hello, my name is Satoru Akiyama. I am a creative developer. This
               is a Netflix Clone Application. I used React/Next.js, Material-UI,
               Firebase. You can see{" "}
               <a
