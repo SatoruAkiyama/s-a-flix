@@ -1,3 +1,6 @@
+// this file should be named firebase
+// the folder should be named Utils
+
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
