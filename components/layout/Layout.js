@@ -69,6 +69,8 @@ const Layout = ({ children, title, description, ogImage, url, hide }) => {
           }
           key="og:description"
         />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@akiyama_satoru" />
       </Head>
       {hide ? (
         <main>{children}</main>

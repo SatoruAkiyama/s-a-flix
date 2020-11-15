@@ -59,15 +59,25 @@ export default function MyApp(props) {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <PersistGate persistor={persistor}>
+        {process.browser ? (
+          <Provider store={store}>
+            <PersistGate persistor={persistor}>
+              <ModalProvider>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                <CssBaseline />
+                <Component {...pageProps} />
+              </ModalProvider>
+            </PersistGate>
+          </Provider>
+        ) : (
+          <Provider store={store}>
             <ModalProvider>
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
               <Component {...pageProps} />
             </ModalProvider>
-          </PersistGate>
-        </Provider>
+          </Provider>
+        )}
       </ThemeProvider>
     </React.Fragment>
   );
