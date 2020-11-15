@@ -57,6 +57,12 @@ export default function MyApp(props) {
           name="google-site-verification"
           content="qPqoU-YM5jV7m1lihsOU4_2exKPheU7Rj2AHVqX90_E"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="S-A-flix" />
+        <meta property="og:site_name" content="S-A-flix" />
       </Head>
       <ThemeProvider theme={theme}>
         {process.browser ? (
