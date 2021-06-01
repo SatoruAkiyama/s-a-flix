@@ -21,11 +21,11 @@ const SearchPage = () => {
     window.scrollTo(0, 0);
     setData(null);
     const getData = async () => {
-      const data = await getMoviesAndTvByQuery(router.query.q);
+      const data = await getMoviesAndTvByQuery(router.query.keyword);
       await setData(data);
     };
     getData();
-  }, [router.query.q]);
+  }, [router.query.keyword]);
   const user = useSelector(selectCurrentUser);
   if (!user) {
     return <Redirect to="/" />;
@@ -40,8 +40,16 @@ const SearchPage = () => {
           data.length > 0 ? (
             <>
               <Typography variant="body1" style={{ marginBottom: "60px" }}>
-                Resluts for{" "}
-                <span style={{ color: "#ffa00a" }}>"{router.query.q}"</span>
+                {router.query.keyword ? (
+                  <>
+                    Resluts for{" "}
+                    <span style={{ color: "#ffa00a" }}>
+                      "{router.query.keyword}"
+                    </span>
+                  </>
+                ) : (
+                  <>What to search for?</>
+                )}
               </Typography>
               <SearchedResults data={data} />
             </>
@@ -52,7 +60,7 @@ const SearchPage = () => {
               align="center"
             >
               No results for{" "}
-              <span style={{ color: "#ffa00a" }}>"{router.query.q}"</span>
+              <span style={{ color: "#ffa00a" }}>"{router.query.keyword}"</span>
             </Typography>
           )
         ) : (

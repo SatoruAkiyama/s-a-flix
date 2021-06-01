@@ -14,6 +14,7 @@ import {
   CardGiftcard,
   ExpandMore,
   Search,
+  Close,
 } from "@material-ui/icons";
 
 import PopperCard from "./PopperCard";
@@ -111,10 +112,16 @@ const OptionsContainer = () => {
   };
 
   const handleChange = (e) => {
+    e.preventDefault();
     setText(e.target.value);
+    if (e.target.value.trim() === "") {
+      router.push(`/search`);
+    } else {
+      router.push(`/search?keyword=${e.target.value.trim()}`);
+    }
   };
 
-  const handleSearch = (e) => {
+  const handleSearchBox = (e) => {
     e.preventDefault();
     if (text === "") {
       setHidden(!hidden);
@@ -122,10 +129,9 @@ const OptionsContainer = () => {
         setOpen(false);
       }
     } else {
-      router.push({
-        pathname: "/search",
-        query: { q: text },
-      });
+      setHidden(!hidden);
+      setText("");
+      router.push(`/search`);
     }
   };
 
@@ -172,12 +178,21 @@ const OptionsContainer = () => {
               />
             </Grid>
             <Grid item>
-              <Search
-                className={`${classes.icon} ${
-                  text !== "" && classes.can_search
-                }`}
-                onClick={handleSearch}
-              />
+              {hidden ? (
+                <Search
+                  className={`${classes.icon} ${
+                    text !== "" && classes.can_search
+                  }`}
+                  onClick={handleSearchBox}
+                />
+              ) : (
+                <Close
+                  className={`${classes.icon} ${
+                    text !== "" && classes.can_search
+                  }`}
+                  onClick={handleSearchBox}
+                />
+              )}
             </Grid>
           </Grid>
         </Grid>
