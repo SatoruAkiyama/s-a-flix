@@ -1,17 +1,15 @@
 export const CARDS = [
   {
-    title: "The Devil All The Time is now streaming",
-    img:
-      "https://dldnvo8c4v9gu.cloudfront.net/homepage/Devil-All-the-Time-homepage.png",
+    title: "The Piero is now streaming",
+    img: "https://images.unsplash.com/photo-1570514732657-a4f4f3b8f875?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fG1vdmllfGVufDB8MXwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
   },
   {
-    title: "Ratched is now streaming",
-    img: "https://dldnvo8c4v9gu.cloudfront.net/homepage/Ratched-homepage.png",
+    title: "Mother Love is now streaming",
+    img: "https://images.unsplash.com/photo-1445633629932-0029acc44e88?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fGxvdmV8ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
   },
   {
-    title: "Enola Holmes premieres on September 23rdFe",
-    img:
-      "https://dldnvo8c4v9gu.cloudfront.net/homepage/Enola-Holmes-homepag.png",
+    title: "The Woman on September 23rdFe",
+    img: "https://images.unsplash.com/photo-1532328076801-a862c9d5a74a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fG1vZGVsfGVufDB8MXwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
   },
 ];
 
@@ -28,8 +26,7 @@ export const FEATURED_NEWS = [
   },
   {
     category: "Company Blog",
-    text:
-      "International best-seller 'The Three-Body Problem' to be adapted as a Netflix original series",
+    text: "International best-seller 'The Three-Body Problem' to be adapted as a Netflix original series",
     date: "01 September 2020",
   },
 ];
