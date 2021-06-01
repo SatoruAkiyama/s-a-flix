@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "axios": "^0.20.0",
     "clsx": "latest",
     "firebase": "^7.21.1",

@@ -7,6 +7,7 @@ import {
   CardActions,
   Typography,
 } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 import { useContext, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -39,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
       padding: "6px 4px 0",
       background: "#303030cf",
     },
+
+    "&.MuiSkeleton-root": {
+      backgroundColor: "rgb(255 255 255 / 14%)",
+    },
   },
   poster__root: {
     height: "400px",
@@ -57,6 +62,10 @@ const useStyles = makeStyles((theme) => ({
       bottom: 0,
       padding: "6px 4px 0",
       background: "#303030cf",
+    },
+
+    "&.MuiSkeleton-root": {
+      backgroundColor: "rgb(255 255 255 / 14%)",
     },
   },
   img: {
@@ -131,7 +140,7 @@ const VideoCard = ({ data, poster }) => {
       alert("There is some error");
     }
   };
-  return (
+  return data ? (
     <Card className={poster ? classes.poster__root : classes.root}>
       <div
         className={classes.img}
@@ -186,6 +195,12 @@ const VideoCard = ({ data, poster }) => {
         </Grid>
       </CardActions>
     </Card>
+  ) : (
+    <Skeleton
+      className={poster ? classes.poster__root : classes.root}
+      animation="wave"
+      variant="rect"
+    />
   );
 };
 

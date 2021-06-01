@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Layout from "components/layout/Layout";
 import PageHeader from "components/PageHeader";
 import VideoSlider from "components/ViideoSlider";
@@ -8,17 +9,24 @@ import { getPopularMoviesWithKids, getPopularTVWithKids } from "lib/api";
 
 export async function getStaticProps() {
   const popularMovies = await getPopularMoviesWithKids();
-  const populartTv = await getPopularTVWithKids();
   return {
     revalidate: 1,
     props: {
       popularMovies,
-      populartTv,
     },
   };
 }
 
-const Home = ({ popularMovies, populartTv }) => {
+const Home = ({ popularMovies }) => {
+  const [populartTv, setPopulartTv] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const populartTv = await getPopularTVWithKids();
+      setPopulartTv(populartTv);
+    };
+    fetchData();
+  }, []);
   const user = useSelector(selectCurrentUser);
   if (!user) {
     return <Redirect to="/" />;
@@ -35,9 +43,7 @@ const Home = ({ popularMovies, populartTv }) => {
           title="Popular Movies With Kids"
         />
       )}
-      {populartTv && (
-        <VideoSlider data={populartTv} title="Popular TV Shows With Kids" />
-      )}
+      <VideoSlider data={populartTv} title="Popular TV Shows With Kids" />
     </Layout>
   );
 };

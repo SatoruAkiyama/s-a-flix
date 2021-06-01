@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Layout from "components/layout/Layout";
 import PageHeader from "components/PageHeader";
 import VideoSlider from "components/ViideoSlider";
@@ -8,17 +9,24 @@ import { getLatestMovies, getLatestTv } from "lib/api";
 
 export async function getStaticProps() {
   const latestMovies = await getLatestMovies();
-  const latestTv = await getLatestTv();
   return {
     revalidate: 1,
     props: {
       latestMovies,
-      latestTv,
     },
   };
 }
 
-const Home = ({ latestMovies, latestTv }) => {
+const Home = ({ latestMovies }) => {
+  const [latestTv, setLatestTv] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const latestTv = await getLatestTv();
+      setLatestTv(latestTv);
+    };
+    fetchData();
+  }, []);
   const user = useSelector(selectCurrentUser);
   if (!user) {
     return <Redirect to="/" />;
@@ -32,7 +40,7 @@ const Home = ({ latestMovies, latestTv }) => {
       {latestMovies && (
         <VideoSlider data={latestMovies.slice(1, 20)} title="Latest Movies" />
       )}
-      {latestTv && <VideoSlider data={latestTv} title="Latest TV Shows" />}
+      <VideoSlider data={latestTv} title="Latest TV Shows" />
     </Layout>
   );
 };
