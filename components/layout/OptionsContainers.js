@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import {
@@ -100,6 +100,13 @@ const OptionsContainer = () => {
   const [text, setText] = useState("");
   const [hidden, setHidden] = useState(true);
 
+  useEffect(() => {
+    if (router.route === "/search") {
+      setText(router.query.keyword);
+      setHidden(!hidden);
+    }
+  }, [router.route]);
+
   const toggleSeetingCard = (newPlacement, card) => (event) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
@@ -172,9 +179,10 @@ const OptionsContainer = () => {
                 type="text"
                 variant="filled"
                 value={text}
-                placeholder="search movies"
+                placeholder="search"
                 onChange={handleChange}
                 className={text !== "" ? classes.can_search : ""}
+                autoFocus={focus}
               />
             </Grid>
             <Grid item>
