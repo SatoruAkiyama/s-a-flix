@@ -20,4 +20,4 @@ Live site(https://s-a-flix.vercel.app/)
 
 # Author
 
-Satoru Akiyama(https://satoruakiyama.com)
+Satoru Akiyama(https://portfolio-satoruakiyama.vercel.app)
