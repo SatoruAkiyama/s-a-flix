@@ -38,13 +38,13 @@ const IndexTop = () => {
       >
         <Grid item>
           <Typography align="center" variant="h1">
-            Unlimited movies, TV shows, and more. <br />
-            This is a Netflix Clone Application.
+            This is a personal project for educational purposes only.<br />
+            And not affiliated with Netflix.
           </Typography>
         </Grid>
         <Grid item>
           <Typography align="center" variant="h2">
-            Watch anywhere. Cancel anytime.
+           Netflix Clone Application.
           </Typography>
         </Grid>
         <Grid item style={{ margin: "20px 0" }}>
